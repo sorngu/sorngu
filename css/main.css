@@ -22,7 +22,7 @@ html {
 }
 body {
 	font-size: var(--font-size);
-	font-family: Simple Console;
+	font-family: 'Courier New', Courier, monospace;
 	font-weight: 400;
 	line-height: var(--line-height);
 	margin: 0;
@@ -47,7 +47,7 @@ img{
 	display: block;
 }
 pre {
-	font-family: 'Courier New', 'Libre Franklin', -apple-system, 'Helvetica Neue', sans-serif;
+	font-family: 'Courier New', Courier, monospace;
 	margin: 0;
 	padding: 0;
 	/*	white-space: normal;*/
@@ -70,7 +70,7 @@ section.col_1 {
 	padding: var(--single-bottom-line-padding);
 	width: 100%;
 	margin: 0;
-	font-family: 'Courier New', 'Libre Franklin', -apple-system, 'Helvetica Neue', sans-serif;
+	font-family: 'Courier New', Courier, monospace;
 	font-size: inherit;
 	line-height: inherit;
 	justify-content: space-between;

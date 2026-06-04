@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人摄影作品集 | Photography</title>
+    <title>作品集 | Photography</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -16,8 +16,8 @@
                 <span class="logo-text">Photography</span>
             </a>
             <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link active">首页</a></li>
-                <li><a href="gallery.html" class="nav-link">作品集</a></li>
+                <li><a href="index.html" class="nav-link">首页</a></li>
+                <li><a href="gallery.html" class="nav-link active">作品集</a></li>
                 <li><a href="about.html" class="nav-link">关于</a></li>
             </ul>
             <button class="hamburger" aria-label="Toggle menu">
@@ -29,39 +29,27 @@
     </nav>
 
     <main>
-        <section class="hero">
-            <div class="hero-image">
-                <img src="picture/1.jpg" alt="Featured Photo" loading="eager">
-                <div class="hero-overlay"></div>
-            </div>
-            <div class="hero-content">
-                <h1 class="hero-title">捕捉瞬间之美</h1>
-                <p class="hero-subtitle">用镜头记录生活的光影故事</p>
-                <a href="gallery.html" class="cta-button">探索作品集</a>
+        <section class="page-header">
+            <div class="container">
+                <h1 class="page-title">作品集</h1>
+                <p class="page-subtitle">探索我的摄影世界</p>
             </div>
         </section>
 
-        <section class="featured">
+        <section class="filters">
             <div class="container">
-                <h2 class="section-title">精选作品</h2>
-                <div class="featured-grid" id="featuredGrid">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">全部</button>
+                    <button class="filter-btn" data-filter="landscape">风景</button>
+                    <button class="filter-btn" data-filter="street">街拍</button>
+                    <button class="filter-btn" data-filter="portrait">人像</button>
                 </div>
             </div>
         </section>
 
-        <section class="intro">
+        <section class="gallery">
             <div class="container">
-                <div class="intro-content">
-                    <div class="intro-text">
-                        <h2 class="section-title">关于我</h2>
-                        <p class="intro-description">
-                            热爱摄影，热衷于用镜头捕捉生活中的美好瞬间。无论是自然风光、城市街景，还是人物故事，我都希望通过影像传递情感与故事。
-                        </p>
-                        <a href="about.html" class="secondary-button">了解更多</a>
-                    </div>
-                    <div class="intro-image">
-                        <img src="picture/2.jpg" alt="Photographer">
-                    </div>
+                <div class="gallery-grid" id="galleryGrid">
                 </div>
             </div>
         </section>

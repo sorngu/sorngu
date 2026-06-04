@@ -168,9 +168,6 @@
 
         </header><!-- .page-header -->
 
-        </head>
-<br><br><br><br><br>
-        <body>
         <div class="entry-content section-inner thin">
             <figure class="wp-block-image size-full">
                 <img loading="lazy" width="4250" height="2139" src="picture/010.png" alt="" class="wp-image-1423" srcset="" sizes="(max-width: 1500px) 100vw, 1500px">
@@ -182,12 +179,6 @@
     </div></main>
 
 <footer class="site-footer section-inner">
-    <head>
-       <meta charset="UTF-8">
-    <title>显示实时时间和访客城市</title>
-</head>
-
-<body>
     <p id="currentTime"></p>
     <p><span id="city-name"></span></p>
 
@@ -211,12 +202,11 @@
                .catch(error => console.error(error));
         }
 
-        updateTime(); // 初始化时间
-        setInterval(updateTime, 1000); // 每秒更新时间
-        getCityName(); // 获取城市名称
+        updateTime();
+        setInterval(updateTime, 1000);
+        getCityName();
     </script>
     <style>
-        /* 初始的浅色模式样式 */
         body {
             background-color: #ffffff;
             color: #000000;
@@ -228,7 +218,6 @@
             transition: background-color 0.9s, color 0.9s;
         }
 
-        /* 暗黑模式样式 */
         .dark-mode {
             background-color: #000000;
             color: #ffffff;
@@ -250,90 +239,73 @@
         }
 
         #main-image {
-            transition: opacity 1s ease;  /* 添加图片的过渡效果，调整透明度，持续时间 0.9 秒，缓动效果为 ease */
+            transition: opacity 1s ease;
         }
         .dark-mode .site-footer img {
             filter: invert(10) brightness(10);
         }
         .section-inner.thin {max-width: 400px;}
-        
-
     </style>
-    </head>
-    <body>
-
 
     <nav class="menu">
-        <!-- 这里放你的菜单项 -->
     </nav>
 
     <script>
-        // 切换颜色主题的函数
         function toggleDarkMode() {
             let body = document.body;
             let menu = document.querySelector('.menu');
-            let image = document.getElementById('main-image'); // 获取图片元素
+            let image = document.getElementById('main-image');
 
-            // 切换暗黑模式类名
             body.classList.toggle('dark-mode');
             menu.classList.toggle('dark-mode');
 
-            // 根据暗黑模式状态更改图片透明度
             if (body.classList.contains('dark-mode')) {
-                image.src = "picture/010.PNG";  // 切换为晚上的图片
-                image.style.opacity = 0;  // 初始透明度为 0
+                image.src = "picture/010.PNG";
+                image.style.opacity = 0;
                 setTimeout(() => {
-                    image.style.opacity = 1;  // 逐渐变为完全显示
-                }, 10);  // 可微调延迟时间
+                    image.style.opacity = 1;
+                }, 10);
             } else {
-                image.src = "picture/010.PNG";  // 切换为白天的图片
-                image.style.opacity = 0;  // 初始透明度为 0
+                image.src = "picture/010.PNG";
+                image.style.opacity = 0;
                 setTimeout(() => {
-                    image.style.opacity = 1;  // 逐渐变为完全显示
-                }, 10);  // 可微调延迟时间
+                    image.style.opacity = 1;
+                }, 10);
             }
         }
 
-        // 自动切换颜色主题的函数
         function autoToggleDarkMode() {
             let body = document.body;
             let menu = document.querySelector('.menu');
-            let image = document.getElementById('main-image'); // 获取图片元素
+            let image = document.getElementById('main-image');
 
-            // 获取当前小时数 (0-23)
             let hour = new Date().getHours();
+            const isDayTime = hour >= 6 && hour < 18;
 
-            // 设置白天和晚上切换的阈值
-            const isDayTime = hour >= 6 && hour < 18; // 假设白天是从早上 6 点到晚上 6 点
-
-            // 根据时间切换暗黑模式
             if (!isDayTime) {
                 body.classList.add('dark-mode');
                 menu.classList.add('dark-mode');
-                image.src = "picture/010.PNG";  // 切换为晚上的图片
-                image.style.opacity = 0;  // 初始透明度为 0
+                image.src = "picture/010.PNG";
+                image.style.opacity = 0;
                 setTimeout(() => {
-                    image.style.opacity = 1;  // 逐渐变为完全显示
-                }, 10);  // 可微调延迟时间
+                    image.style.opacity = 1;
+                }, 10);
             } else {
                 body.classList.remove('dark-mode');
                 menu.classList.remove('dark-mode');
-                image.src = "picture/010.PNG";  // 切换为白天的图片
-                image.style.opacity = 0;  // 初始透明度为 0
+                image.src = "picture/010.PNG";
+                image.style.opacity = 0;
                 setTimeout(() => {
-                    image.style.opacity = 1;  // 逐渐变为完全显示
-                }, 10);  // 可微调延迟时间
+                    image.style.opacity = 1;
+                }, 10);
             }
         }
-        // 页面加载完成后调用自动切换函数
         window.onload = function() {
             autoToggleDarkMode();
         };
 
-        // 每小时检查一次自动切换主题
-        setInterval(autoToggleDarkMode, 3600000); // 3600000毫秒 = 1小时
+        setInterval(autoToggleDarkMode, 3600000);
     </script>
-    </body>
 
     <footer class="site-footer section-inner align-right">
         <p>Copyright © 2022 - 2026</p>
@@ -354,15 +326,15 @@
         //-->
     </script>
 
-    <script type="text/javascript" src="css/counter.js" async=""></script>		<noscript><div class="statcounter"><a title="web analytics" href="https://statcounter.com/"><img class="statcounter" src="https://c.statcounter.com/11044408/0/3b70edad/1/" alt="web analytics" /></a></div></noscript>
+    <script type="text/javascript" src="css/counter.js" async=""></script>
+    <noscript><div class="statcounter"><a title="web analytics" href="https://statcounter.com/"><img class="statcounter" src="https://c.statcounter.com/11044408/0/3b70edad/1/" alt="web analytics" /></a></div></noscript>
     <!-- End of StatCounter Code -->
     <script type="text/javascript" src="css/imagesloaded.min.js" id="imagesloaded-js"></script>
     <script type="text/javascript" src="css/masonry.min.js" id="masonry-js"></script>
     <script type="text/javascript" src="css/global.js" id="hamilton_global-js"></script>
     <script type="text/javascript" src="css/wp-embed.min.js" id="wp-embed-js"></script>
 
-
-    </body></footer>
+</footer>
 </body>
 </html>
 

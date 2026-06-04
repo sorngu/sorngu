@@ -268,7 +268,6 @@
         <div class="entry-content section-inner thin">
 
                       <style>
-                /* Basic styling */
                 body {
                     margin: 0;
                     padding: 0;
@@ -278,7 +277,7 @@
                     width: 100%;
                     height: 150px;
                     transition: margin-top 0.5s, opacity 0.5s;
-                    margin-top: -100px; /* Initial position off-screen */
+                    margin-top: -100px;
                     opacity: 0;
                 }
 
@@ -289,7 +288,7 @@
 
                 .container {
                     width: 100%;
-                    padding-top: 60px; /* Adjust padding to give space for the title box */
+                    padding-top: 60px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -297,7 +296,7 @@
 
                 .container {
                     justify-content: space-between;
-                    width: 50%; /* 修改容器宽度为50% */
+                    width: 50%;
                     height: 150px;
                 }
 
@@ -308,73 +307,70 @@
                     cursor: pointer;
                     transition: background-color 0.3s;
                     padding: 10px;
-                    position: relative; /* 相对定位，为伪元素设置绝对定位的参考 */
+                    position: relative;
                 }
 
                 .left-title:hover,
                 .right-title:hover {
-                    color: #888; /* 鼠标悬停时修改字体颜色 */
+                    color: #888;
                 }
 
                 .separator {
                     cursor: default;
-                    background-color: transparent; /* 透明背景色 */
+                    background-color: transparent;
                     margin: 10px;
                 }
 
                 h2 {
-                    margin: 0; /* 移除标题的默认外边距 */
+                    margin: 0;
                 }
 
                 .image-grid {
                     display: flex;
-                    flex-wrap: wrap; /* Enable wrapping */
-                    gap: 24px; /* Space between items */
+                    flex-wrap: wrap;
+                    gap: 24px;
 
                 }
 
                 .image-item {
-                    flex: 1 1 calc(33.333% - 20px); /* Default: Three items per row */
-                    max-width: calc(33.333% - 20px); /* Limit width */
+                    flex: 1 1 calc(33.333% - 20px);
+                    max-width: calc(33.333% - 20px);
                     text-align: center;
                     transition: opacity 0.5s, flex 0.5s;
-                    box-sizing: border-box; /* Include padding/borders in width */
+                    box-sizing: border-box;
                 }
 
                 .image-item img {
                     width: 100%;
-                    height: auto; /* Maintain aspect ratio */
+                    height: auto;
                     display: block;
                 }
 
                 @media (min-width: 1200px) {
                     .image-item {
-                        flex: 1 1 calc(16.666% - 20px); /* Six items per row */
-                        max-width: calc(16.666% - 20px); /* Same as flex-basis */
+                        flex: 1 1 calc(16.666% - 20px);
+                        max-width: calc(16.666% - 20px);
                     }
                 }
 
-                /* For 5 items per row */
                 @media (min-width: 1000px) and (max-width: 1199px) {
                     .image-item {
-                        flex: 1 1 calc(20% - 20px); /* Five items per row */
-                        max-width: calc(20% - 20px); /* Same as flex-basis */
+                        flex: 1 1 calc(20% - 20px);
+                        max-width: calc(20% - 20px);
                     }
                 }
 
-                /* For 4 items per row */
                 @media (min-width: 800px) and (max-width: 999px) {
                     .image-item {
-                        flex: 1 1 calc(25% - 20px); /* Four items per row */
-                        max-width: calc(25% - 20px); /* Same as flex-basis */
+                        flex: 1 1 calc(25% - 20px);
+                        max-width: calc(25% - 20px);
                     }
                 }
 
-                /* For 3 items per row */
                 @media (min-width: 768px) and (max-width: 799px) {
                     .image-item {
-                        flex: 1 1 calc(33.333% - 20px); /* Three items per row */
-                        max-width: calc(33.333% - 20px); /* Same as flex-basis */
+                        flex: 1 1 calc(33.333% - 20px);
+                        max-width: calc(33.333% - 20px);
                     }
                 }
 
@@ -398,8 +394,6 @@
                 }
             </style>
             <title>Responsive Grid Layout</title>
-            </head>
-            <body>
             <div class="image-grid">
                 <div class="image-item">
                     <figure class="wp-block-image size-full size-large">
@@ -560,7 +554,6 @@
                 let isTouchMoving = false;
 
 
-                // Touch event handling
                 document.addEventListener('touchstart', (e) => {
                     startY = e.touches[0].clientY;
                     isTouchMoving = true;
@@ -588,7 +581,6 @@
 
 
 
-                // Middle mouse button handling
                 document.addEventListener('mousedown', (e) => {
                     if (e.button === 1) startY = e.clientY;
                 });
@@ -620,8 +612,7 @@
 
             </script>
 
-
-            </body></div> <!-- .post -->
+        </div> <!-- .post -->
 
     </div></main>
 
@@ -629,7 +620,6 @@
 <br><br><br>
     
     <style>
-        /* 初始的浅色模式样式 */
         body {
             background-color: #ffffff;
             color: #000000;
@@ -641,7 +631,6 @@
             transition: background-color 0.9s, color 0.9s;
         }
 
-        /* 暗黑模式样式 */
         .dark-mode {
             background-color: #000000;
             color: #ffffff;
@@ -682,17 +671,16 @@
             left: 0;
             width: 100%;
             height: 110%;
-            /* 半透明背景，可根据需要修改 */
             display: none;
             justify-content: center;
             align-items: center;
         }
 
         .single-image {
-            opacity: 0;  /* 初始时图片不显示 */
-            transition: opacity 2.5s ease;  /* 添加显示过渡效果 */
-            max-width: 80%;  /* 图片最大宽度，可根据需要调整 */
-            max-height: 80%;  /* 图片最大高度，可根据需要调整 */
+            opacity: 0;
+            transition: opacity 2.5s ease;
+            max-width: 80%;
+            max-height: 80%;
         }
         .site-footer {
             display: flex;
@@ -717,34 +705,26 @@
         }
         .section-inner.thin {max-width: 1111px;}
     </style>
-    </head>
-    <body>
 
     <button class="dot" onclick="toggleDarkMode()"></button>
 
     <nav class="menu">
-        <!-- 这里放你的菜单项 -->
     </nav>
 
    <script>
-        // 切换颜色主题的函数
         function toggleDarkMode() {
             var body = document.body;
             var menu = document.querySelector('.menu');
 
-            // 在 body 和 menu 上切换暗黑模式类名
             body.classList.toggle('dark-mode');
             menu.classList.toggle('dark-mode');
         }
     </script>
 
     <script>
-        // 获取当前时间
         var currentTime = new Date().getHours();
 
-        // 根据时间判断应用的背景颜色主题
         if (currentTime >= 18 || currentTime < 6) {
-            // 如果是晚上，应用暗黑模式
             document.body.classList.add('dark-mode');
             document.querySelector('.menu').classList.add('dark-mode');
         }
@@ -772,7 +752,6 @@
 
             singleImageFrame.appendChild(singleImage);
 
-            // 获取图片对应的文字内容
             var title = clickedImage.querySelector('h4').textContent;
             var description = clickedImage.querySelector('p').textContent;
             var captionElementTitle = document.createElement('div');
@@ -782,23 +761,18 @@
             captionElementDescription.textContent = description;
             captionElementDescription.classList.add('image-caption-description');
 
-            // 将文字放在图片下方
             singleImageFrame.appendChild(captionElementTitle);
             singleImageFrame.appendChild(captionElementDescription);
 
-            // 获取包含文字的框架的尺寸
             var mainFrame = document.querySelector('.entry-content.section-inner.thin');
             var frameWidth = mainFrame.offsetWidth;
             var frameHeight = mainFrame.offsetHeight;
 
-          // 判断是否为移动端
-            const isMobile = window.innerWidth < 768;
+          const isMobile = window.innerWidth < 768;
             if (isMobile) {
-                // 在移动端固定图片尺寸为较小值，例如 200px x 300px
                 singleImage.style.maxWidth = '300px';
                 singleImage.style.maxHeight = '300px';
             } else {
-                // 在电脑端固定图片尺寸为较大值，例如 400px x 600px
                 singleImage.style.maxWidth = '560px';
                 singleImage.style.maxHeight = '600px';
             }
@@ -807,7 +781,7 @@
             document.body.appendChild(singleImageFrame);
 
             singleImageFrame.style.display = 'flex';
-            singleImageFrame.style.flexDirection = 'column'; // 设置为垂直排列
+            singleImageFrame.style.flexDirection = 'column';
 
             setTimeout(() => {
                 singleImage.style.opacity = 1;
@@ -836,16 +810,7 @@
         });
 
     </script>
-    <button class="dot" onclick="toggleDarkMode()"></button>
-
-    <nav class="menu">
-
-    </nav>
-
-    <script>
-
-    </script>
-    </body></div>
+</div>
  <footer class="site-footer section-inner align-right">
         <p>Copyright © 2025</p>
         <p></p>
@@ -865,15 +830,15 @@
     //-->
 </script>
 
-<script type="text/javascript" src="css/counter.js" async=""></script>		<noscript><div class="statcounter"><a title="web analytics" href="https://statcounter.com/"><img class="statcounter" src="https://c.statcounter.com/11044408/0/3b70edad/1/" alt="web analytics" /></a></div></noscript>
+<script type="text/javascript" src="css/counter.js" async=""></script>
+<noscript><div class="statcounter"><a title="web analytics" href="https://statcounter.com/"><img class="statcounter" src="https://c.statcounter.com/11044408/0/3b70edad/1/" alt="web analytics" /></a></div></noscript>
 <!-- End of StatCounter Code -->
 <script type="text/javascript" src="css/imagesloaded.min.js" id="imagesloaded-js"></script>
 <script type="text/javascript" src="css/masonry.min.js" id="masonry-js"></script>
 <script type="text/javascript" src="css/global.js" id="hamilton_global-js"></script>
 <script type="text/javascript" src="css/wp-embed.min.js" id="wp-embed-js"></script>
 
-
-
-</body></html>
+</body>
+</html>
 
 

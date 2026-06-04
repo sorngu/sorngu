@@ -176,7 +176,6 @@
 
         <footer class="site-footer section-inner align-right">
             <style>
-                /* 初始的浅色模式样式 */
                 body {
                     background-color: #ffffff;
                     color: #000000;
@@ -188,7 +187,6 @@
                     transition: background-color 0.9s, color 0.9s;
                 }
 
-                /* 暗黑模式样式 */
                 .dark-mode {
                     background-color: #000000;
                     color: #ffffff;
@@ -206,7 +204,7 @@
                     border: none;
                     cursor: pointer;
                     float: none;
-                    display: none; /* 隐藏切换按钮 */
+                    display: none;
                 }
                 
             .site-footer {
@@ -222,33 +220,25 @@
         }
                 .section-inner.thin {max-width: 1000px;}
             </style>
-            </head>
-            <body>
 
             <button class="dot" onclick="toggleDarkMode()"></button>
 
             <nav class="menu">
-                <!-- 这里放你的菜单项 -->
             </nav>
 
              <script>
-        // 获取当前时间
         var currentTime = new Date().getHours();
 
-        // 判断是否在晚上（18:00 到 05:59）
         if (currentTime >= 18 || currentTime < 6) {
-            // 如果是晚上，应用暗黑模式
             document.body.classList.add('dark-mode');
             document.querySelector('.menu').classList.add('dark-mode');
         }
 
 
-                // 切换颜色主题的函数
                 function toggleDarkMode() {
                     var body = document.body;
                     var menu = document.querySelector('.menu');
 
-                    // 在 body 和 menu 上切换暗黑模式类名
                     body.classList.toggle('dark-mode');
                     menu.classList.toggle('dark-mode');
                 }
@@ -258,7 +248,7 @@
             <a href="http://fotomemo.cn" class="site-name">
                 <img src="css/1.png" alt="Site Logo" width="15" height="15">
             </a>
-            </body></footer>
+        </footer>
 
         <!-- Start of StatCounter Code -->
         <script>
@@ -271,13 +261,14 @@
             //-->
         </script>
 
-        <script type="text/javascript" src="css/counter.js" async=""></script>		<noscript><div class="statcounter"><a title="web analytics" href="https://statcounter.com/"><img class="statcounter" src="https://c.statcounter.com/11044408/0/3b70edad/1/photograph.html" alt="web analytics" /></a></div></noscript>
+        <script type="text/javascript" src="css/counter.js" async=""></script>
+        <noscript><div class="statcounter"><a title="web analytics" href="https://statcounter.com/"><img class="statcounter" src="https://c.statcounter.com/11044408/0/3b70edad/1/photograph.html" alt="web analytics" /></a></div></noscript>
         <!-- End of StatCounter Code -->
         <script type="text/javascript" src="css/imagesloaded.min.js" id="imagesloaded-js"></script>
         <script type="text/javascript" src="css/masonry.min.js" id="masonry-js"></script>
         <script type="text/javascript" src="css/global.js" id="hamilton_global-js"></script>
         <script type="text/javascript" src="css/wp-embed.min.js" id="wp-embed-js"></script>
 
-
-
-    </div></main></body></html>
+    </div></main>
+</body>
+</html>

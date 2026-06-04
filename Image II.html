@@ -192,8 +192,6 @@
                     object-fit: cover;
                 }
             </style>
-            </head>
-            <body>
             <div class="video-box">
                 <video autoplay muted playsinline loop>
                     <source src="picture/32.MOV" type="video/mp4">
@@ -275,29 +273,23 @@
         }
         .section-inner.thin {max-width: 560px;}
     </style>
-    </head>
-    <body>
 
     <button class="dot" onclick="toggleDarkMode()"></button>
 
     <nav class="menu">
-        <!-- 这里放你的菜单项 -->
     </nav>
 
     <script>
-        // 切换颜色主题的函数
         function toggleDarkMode() {
             var body = document.body;
             var menu = document.querySelector('.menu');
 
-            // 在 body 和 menu 上切换暗黑模式类名
             body.classList.toggle('dark-mode');
             menu.classList.toggle('dark-mode');
         }
     </script>
 
     <script>
-        // 获取当前时间
         var currentTime = new Date().getHours();
 
         // 根据时间判断应用的背景颜色主题

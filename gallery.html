@@ -3,47 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>作品集 | Photography</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Works | Photography</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <span class="logo-text">Photography</span>
-            </a>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">首页</a></li>
-                <li><a href="gallery.html" class="nav-link active">作品集</a></li>
-                <li><a href="about.html" class="nav-link">关于</a></li>
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="nav-logo">Photography</a>
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="gallery.html" class="nav-link">Works</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
             </ul>
-            <button class="hamburger" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <main>
         <section class="page-header">
-            <div class="container">
-                <h1 class="page-title">作品集</h1>
-                <p class="page-subtitle">探索我的摄影世界</p>
-            </div>
+            <h1 class="page-title">Works</h1>
+            <p class="page-subtitle">Gallery</p>
         </section>
 
         <section class="filters">
-            <div class="container">
-                <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all">全部</button>
-                    <button class="filter-btn" data-filter="landscape">风景</button>
-                    <button class="filter-btn" data-filter="street">街拍</button>
-                    <button class="filter-btn" data-filter="portrait">人像</button>
-                </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="landscape">Landscape</button>
+                <button class="filter-btn" data-filter="street">Street</button>
+                <button class="filter-btn" data-filter="portrait">Portrait</button>
             </div>
         </section>
 
@@ -57,30 +43,20 @@
 
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <h3>Photography</h3>
-                    <p>用光影讲述故事</p>
-                </div>
-                <div class="footer-links">
-                    <a href="index.html">首页</a>
-                    <a href="gallery.html">作品集</a>
-                    <a href="about.html">关于</a>
-                </div>
-                <div class="footer-social">
-                    <a href="#" aria-label="Instagram">Instagram</a>
-                    <a href="#" aria-label="Behance">Behance</a>
-                    <a href="#" aria-label="Email">Email</a>
-                </div>
+            <div class="footer-nav">
+                <a href="index.html">Home</a>
+                <a href="index.html#works">Works</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="about.html">About</a>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Photography. All rights reserved.</p>
+            <div class="footer-info">
+                <p>&copy; 2026 Photography</p>
             </div>
         </div>
     </footer>
 
     <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" aria-label="Close">&times;</button>
+        <button class="lightbox-close">&times;</button>
         <img src="" alt="" id="lightboxImage">
     </div>
 

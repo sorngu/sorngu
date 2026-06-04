@@ -3,65 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人摄影作品集 | Photography</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Photography</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <span class="logo-text">Photography</span>
-            </a>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link active">首页</a></li>
-                <li><a href="gallery.html" class="nav-link">作品集</a></li>
-                <li><a href="about.html" class="nav-link">关于</a></li>
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="nav-logo">Photography</a>
+            <ul class="nav-list">
+                <li><a href="#works" class="nav-link">Works</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
             </ul>
-            <button class="hamburger" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <main>
         <section class="hero">
+            <div class="hero-inner">
+                <h1 class="hero-title">Capturing Moments</h1>
+                <p class="hero-sub">Photography</p>
+            </div>
             <div class="hero-image">
-                <img src="picture/1.jpg" alt="Featured Photo" loading="eager">
-                <div class="hero-overlay"></div>
-            </div>
-            <div class="hero-content">
-                <h1 class="hero-title">捕捉瞬间之美</h1>
-                <p class="hero-subtitle">用镜头记录生活的光影故事</p>
-                <a href="gallery.html" class="cta-button">探索作品集</a>
+                <img src="picture/1.jpg" alt="Featured">
             </div>
         </section>
 
-        <section class="featured">
+        <section id="works" class="works">
             <div class="container">
-                <h2 class="section-title">精选作品</h2>
-                <div class="featured-grid" id="featuredGrid">
+                <h2 class="section-title">Selected Works</h2>
+                <div class="works-grid" id="worksGrid">
                 </div>
-            </div>
-        </section>
-
-        <section class="intro">
-            <div class="container">
-                <div class="intro-content">
-                    <div class="intro-text">
-                        <h2 class="section-title">关于我</h2>
-                        <p class="intro-description">
-                            热爱摄影，热衷于用镜头捕捉生活中的美好瞬间。无论是自然风光、城市街景，还是人物故事，我都希望通过影像传递情感与故事。
-                        </p>
-                        <a href="about.html" class="secondary-button">了解更多</a>
-                    </div>
-                    <div class="intro-image">
-                        <img src="picture/2.jpg" alt="Photographer">
-                    </div>
+                <div class="view-all">
+                    <a href="gallery.html" class="view-all-link">View All Works</a>
                 </div>
             </div>
         </section>
@@ -69,30 +42,20 @@
 
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <h3>Photography</h3>
-                    <p>用光影讲述故事</p>
-                </div>
-                <div class="footer-links">
-                    <a href="index.html">首页</a>
-                    <a href="gallery.html">作品集</a>
-                    <a href="about.html">关于</a>
-                </div>
-                <div class="footer-social">
-                    <a href="#" aria-label="Instagram">Instagram</a>
-                    <a href="#" aria-label="Behance">Behance</a>
-                    <a href="#" aria-label="Email">Email</a>
-                </div>
+            <div class="footer-nav">
+                <a href="index.html">Home</a>
+                <a href="#works">Works</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="about.html">About</a>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Photography. All rights reserved.</p>
+            <div class="footer-info">
+                <p>&copy; 2026 Photography</p>
             </div>
         </div>
     </footer>
 
     <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" aria-label="Close">&times;</button>
+        <button class="lightbox-close">&times;</button>
         <img src="" alt="" id="lightboxImage">
     </div>
 

@@ -3,37 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>关于 | Photography</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>About | Photography</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <span class="logo-text">Photography</span>
-            </a>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">首页</a></li>
-                <li><a href="gallery.html" class="nav-link">作品集</a></li>
-                <li><a href="about.html" class="nav-link active">关于</a></li>
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="nav-logo">Photography</a>
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="gallery.html" class="nav-link">Works</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
             </ul>
-            <button class="hamburger" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <main>
         <section class="page-header">
-            <div class="container">
-                <h1 class="page-title">关于我</h1>
-                <p class="page-subtitle">热爱生活，热爱摄影</p>
-            </div>
+            <h1 class="page-title">About</h1>
+            <p class="page-subtitle">Photographer</p>
         </section>
 
         <section class="about">
@@ -43,33 +31,36 @@
                         <img src="picture/45.jpg" alt="Photographer">
                     </div>
                     <div class="about-text">
-                        <h2>你好，我是摄影师</h2>
-                        <p>从小就对光影有着独特的敏感，摄影于我不仅是记录，更是一种表达情感的方式。我相信每一个瞬间都值得被珍藏，每一张照片背后都有属于它的故事。</p>
-                        <p>我专注于风光、街拍和人像摄影，喜欢在平凡中发现不平凡的美。无论是壮丽的自然风景，还是城市街头的人文瞬间，亦或是人物真实的情感流露，都是我镜头下的主角。</p>
-                        <p>摄影教会了我用心去观察世界，用镜头去捕捉美好。希望我的作品能给你带来一些感动和启发。</p>
+                        <h2>ABOUT ME</h2>
+                        <p>
+                            With a deep sensitivity to light and shadow from an early age, photography is not just documentation for me, but a way to express emotions. I believe every moment deserves to be cherished, and every photograph has its own story to tell.
+                        </p>
+                        <p>
+                            I specialize in landscape, street, and portrait photography, finding beauty in the ordinary. Whether it's the grandeur of natural landscapes, the human moments on city streets, or the genuine emotions of people, they are all the protagonists in my lens.
+                        </p>
+                        <p>
+                            Photography has taught me to observe the world with intention and capture beauty through the lens. I hope my work brings you some inspiration and emotion.
+                        </p>
                         
                         <div class="contact-info">
-                            <h3>联系方式</h3>
+                            <h3>CONTACT</h3>
                             <div class="contact-item">
-                                <strong>邮箱：</strong>
-                                <span>hello@photography.com</span>
+                                <strong>Email:</strong> hello@photography.com
                             </div>
                             <div class="contact-item">
-                                <strong>微信：</strong>
-                                <span>photography_official</span>
+                                <strong>WeChat:</strong> photography_official
                             </div>
                             <div class="contact-item">
-                                <strong>地址：</strong>
-                                <span>中国 · 上海</span>
+                                <strong>Location:</strong> Shanghai, China
                             </div>
-                        </div>
-                        
-                        <div class="social-links">
-                            <a href="#" class="social-link">Instagram</a>
-                            <a href="#" class="social-link">Behance</a>
-                            <a href="#" class="social-link">500px</a>
                         </div>
                     </div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link">Instagram</a>
+                    <a href="#" class="social-link">Behance</a>
+                    <a href="#" class="social-link">500px</a>
                 </div>
             </div>
         </section>
@@ -77,30 +68,20 @@
 
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <h3>Photography</h3>
-                    <p>用光影讲述故事</p>
-                </div>
-                <div class="footer-links">
-                    <a href="index.html">首页</a>
-                    <a href="gallery.html">作品集</a>
-                    <a href="about.html">关于</a>
-                </div>
-                <div class="footer-social">
-                    <a href="#" aria-label="Instagram">Instagram</a>
-                    <a href="#" aria-label="Behance">Behance</a>
-                    <a href="#" aria-label="Email">Email</a>
-                </div>
+            <div class="footer-nav">
+                <a href="index.html">Home</a>
+                <a href="index.html#works">Works</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="about.html">About</a>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Photography. All rights reserved.</p>
+            <div class="footer-info">
+                <p>&copy; 2026 Photography</p>
             </div>
         </div>
     </footer>
 
     <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" aria-label="Close">&times;</button>
+        <button class="lightbox-close">&times;</button>
         <img src="" alt="" id="lightboxImage">
     </div>
 

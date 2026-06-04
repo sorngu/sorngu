@@ -25,30 +25,9 @@ const photos = [
     { src: 'picture/43.jpg', category: 'portrait' },
 ];
 
-const navbar = document.querySelector('.navbar');
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
 const lightbox = document.getElementById('lightbox');
 const lightboxImage = document.getElementById('lightboxImage');
 const lightboxClose = document.querySelector('.lightbox-close');
-
-let lastScroll = 0;
-
-function handleScroll() {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-    
-    lastScroll = currentScroll;
-}
-
-function toggleMobileMenu() {
-    navMenu.classList.toggle('active');
-}
 
 function openLightbox(src) {
     lightboxImage.src = src;
@@ -61,20 +40,20 @@ function closeLightbox() {
     document.body.style.overflow = '';
 }
 
-function renderFeaturedPhotos() {
-    const featuredGrid = document.getElementById('featuredGrid');
-    if (!featuredGrid) return;
+function renderWorksGrid() {
+    const worksGrid = document.getElementById('worksGrid');
+    if (!worksGrid) return;
     
     const featured = photos.slice(0, 6);
     
-    featuredGrid.innerHTML = featured.map(photo => `
-        <div class="photo-card" data-src="${photo.src}">
+    worksGrid.innerHTML = featured.map(photo => `
+        <div class="photo-item" data-src="${photo.src}">
             <img src="${photo.src}" alt="Photo" loading="lazy">
         </div>
     `).join('');
     
-    featuredGrid.querySelectorAll('.photo-card').forEach(card => {
-        card.addEventListener('click', () => openLightbox(card.dataset.src));
+    worksGrid.querySelectorAll('.photo-item').forEach(item => {
+        item.addEventListener('click', () => openLightbox(item.dataset.src));
     });
 }
 
@@ -86,13 +65,13 @@ function initGallery() {
         const filtered = filter === 'all' ? photos : photos.filter(p => p.category === filter);
         
         galleryGrid.innerHTML = filtered.map(photo => `
-            <div class="photo-card" data-src="${photo.src}" data-category="${photo.category}">
+            <div class="photo-item" data-src="${photo.src}" data-category="${photo.category}">
                 <img src="${photo.src}" alt="Photo" loading="lazy">
             </div>
         `).join('');
         
-        galleryGrid.querySelectorAll('.photo-card').forEach(card => {
-            card.addEventListener('click', () => openLightbox(card.dataset.src));
+        galleryGrid.querySelectorAll('.photo-item').forEach(item => {
+            item.addEventListener('click', () => openLightbox(item.dataset.src));
         });
     }
     
@@ -108,18 +87,6 @@ function initGallery() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    window.addEventListener('scroll', handleScroll);
-    
-    if (hamburger) {
-        hamburger.addEventListener('click', toggleMobileMenu);
-    }
-    
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-        });
-    });
-    
     if (lightboxClose) {
         lightboxClose.addEventListener('click', closeLightbox);
     }
@@ -138,6 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
-    renderFeaturedPhotos();
+    renderWorksGrid();
     initGallery();
 });

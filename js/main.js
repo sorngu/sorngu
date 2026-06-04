@@ -1,133 +1,133 @@
-/* ============================================
-   IKEA-style Photography Portfolio - JS
-   ============================================ */
-
 const photos = [
-  { src: 'picture/3.jpg', label: 'Mountain Light' },
-  { src: 'picture/4.jpg', label: 'City Pulse' },
-  { src: 'picture/5.jpg', label: 'Silhouette' },
-  { src: 'picture/6.jpg', label: 'Golden Hour' },
-  { src: 'picture/7.JPG', label: 'Urban Flow' },
-  { src: 'picture/8.JPG', label: 'Quiet Moment' },
-  { src: 'picture/9.JPG', label: 'Horizon' },
-  { src: 'picture/10.jpg', label: 'Street Life' },
-  { src: 'picture/11.JPG', label: 'Portrait Study' },
-  { src: 'picture/12.jpg', label: 'Natural Light' },
-  { src: 'picture/13.jpg', label: 'Architecture' },
-  { src: 'picture/14.jpg', label: 'Shadows' },
-  { src: 'picture/15.jpg', label: 'Wide View' },
-  { src: 'picture/33.jpg', label: 'Texture' },
-  { src: 'picture/34.jpg', label: 'Reflection' },
-  { src: 'picture/35.jpg', label: 'Depth' },
-  { src: 'picture/36.jpg', label: 'Motion' },
-  { src: 'picture/37.jpg', label: 'Still Life' },
-  { src: 'picture/38.jpg', label: 'Pattern' },
-  { src: 'picture/39.jpg', label: 'Contrast' },
-  { src: 'picture/40.jpg', label: 'Mood' },
-  { src: 'picture/41.jpg', label: 'Vista' },
-  { src: 'picture/42.jpg', label: 'Alley' },
-  { src: 'picture/43.jpg', label: 'Twilight' },
+  { src: 'picture/3.jpg' }, { src: 'picture/4.jpg' },
+  { src: 'picture/5.jpg' }, { src: 'picture/6.jpg' },
+  { src: 'picture/7.JPG' }, { src: 'picture/8.JPG' },
+  { src: 'picture/9.JPG' }, { src: 'picture/10.jpg' },
+  { src: 'picture/11.JPG' }, { src: 'picture/12.jpg' },
+  { src: 'picture/13.jpg' }, { src: 'picture/14.jpg' },
+  { src: 'picture/15.jpg' }, { src: 'picture/33.jpg' },
+  { src: 'picture/34.jpg' }, { src: 'picture/35.jpg' },
+  { src: 'picture/36.jpg' }, { src: 'picture/37.jpg' },
+  { src: 'picture/38.jpg' }, { src: 'picture/39.jpg' },
+  { src: 'picture/40.jpg' }, { src: 'picture/41.jpg' },
+  { src: 'picture/42.jpg' }, { src: 'picture/43.jpg' },
 ];
 
-/* ---- Menu ---- */
+/* Menu */
 const menuBtn = document.getElementById('menuBtn');
 const overlay = document.getElementById('menuOverlay');
-let menuOpen = false;
+let open = false;
 
-menuBtn.addEventListener('click', () => {
-  menuOpen = !menuOpen;
-  menuBtn.classList.toggle('active');
-  overlay.classList.toggle('open');
-  document.body.style.overflow = menuOpen ? 'hidden' : '';
-  
-  // stagger menu links
-  if (menuOpen) {
+if (menuBtn) {
+  menuBtn.addEventListener('click', () => {
+    open = !open;
+    overlay.classList.toggle('open');
+    document.body.style.overflow = open ? 'hidden' : '';
+    
     document.querySelectorAll('.menu-link').forEach((link, i) => {
-      link.style.transitionDelay = `${i * 80}ms`;
+      if (open) {
+        link.style.transitionDelay = `${i * 80}ms`;
+        link.style.opacity = '1';
+        link.style.transform = 'translateY(0)';
+      } else {
+        link.style.transitionDelay = '0ms';
+        link.style.opacity = '0';
+        link.style.transform = 'translateY(20px)';
+      }
     });
-  } else {
-    document.querySelectorAll('.menu-link').forEach(link => {
-      link.style.transitionDelay = '0ms';
-      link.style.opacity = '0';
-      link.style.transform = 'translateY(40px)';
-    });
-  }
-});
-
-overlay.querySelectorAll('.menu-link').forEach(link => {
-  link.addEventListener('click', () => {
-    menuOpen = false;
-    menuBtn.classList.remove('active');
-    overlay.classList.remove('open');
-    document.body.style.overflow = '';
   });
-});
 
-/* ---- Lightbox ---- */
+  overlay.querySelectorAll('.menu-link').forEach(link => {
+    link.addEventListener('click', () => {
+      open = false;
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+}
+
+/* Lightbox */
 const lb = document.getElementById('lightbox');
 const lbImg = document.getElementById('lbImg');
 const lbClose = document.querySelector('.lb-close');
 
-function openLightbox(src) {
+function openLB(src) {
   lbImg.src = src;
   lb.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
 
-function closeLightbox() {
+function closeLB() {
   lb.classList.remove('active');
   document.body.style.overflow = '';
 }
 
-lbClose.addEventListener('click', closeLightbox);
-lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+if (lbClose) lbClose.addEventListener('click', closeLB);
+if (lb) lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && lb.classList.contains('active')) closeLightbox();
+  if (e.key === 'Escape' && lb && lb.classList.contains('active')) closeLB();
 });
 
-/* ---- Render Works Grid ---- */
+/* Render Works */
 function renderWorks() {
   const grid = document.getElementById('worksGrid');
   if (!grid) return;
   
   const items = photos.slice(0, 6);
   grid.innerHTML = items.map((p, i) => `
-    <div class="photo-item reveal" data-src="${p.src}" style="transition-delay:${i*100}ms">
+    <div class="photo-item" data-src="${p.src}" style="transition-delay:${i*80}ms">
       <img src="${p.src}" alt="" loading="lazy">
-      <div class="photo-label">${p.label}</div>
     </div>
   `).join('');
   
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  
   grid.querySelectorAll('.photo-item').forEach(el => {
-    el.addEventListener('click', () => openLightbox(el.dataset.src));
+    el.addEventListener('click', () => openLB(el.dataset.src));
     observer.observe(el);
   });
 }
 
-/* ---- Render Gallery ---- */
+/* Render Gallery */
 function initGallery() {
   const grid = document.getElementById('galleryGrid');
   if (!grid) return;
   
   function render(filter) {
-    const filtered = filter === 'all' ? photos : photos.filter(p => p.label);
-    // We'll use a simpler filter by index for demo
-    const cats = ['landscape','street','portrait'];
-    let filtered2 = filter === 'all' ? photos : photos.filter((_, i) => {
-      if (filter === 'landscape') return i % 3 === 0;
-      if (filter === 'street') return i % 3 === 1;
-      if (filter === 'portrait') return i % 3 === 2;
-      return true;
-    });
+    let arr = photos;
+    if (filter !== 'all') {
+      arr = photos.filter((_, i) => {
+        if (filter === 'landscape') return i % 3 === 0;
+        if (filter === 'street') return i % 3 === 1;
+        if (filter === 'portrait') return i % 3 === 2;
+        return true;
+      });
+    }
     
-    grid.innerHTML = filtered2.map((p, i) => `
-      <div class="photo-item reveal" data-src="${p.src}" style="transition-delay:${i*60}ms">
+    grid.innerHTML = arr.map((p, i) => `
+      <div class="photo-item" data-src="${p.src}" style="transition-delay:${i*50}ms">
         <img src="${p.src}" alt="" loading="lazy">
       </div>
     `).join('');
     
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    
     grid.querySelectorAll('.photo-item').forEach(el => {
-      el.addEventListener('click', () => openLightbox(el.dataset.src));
+      el.addEventListener('click', () => openLB(el.dataset.src));
       observer.observe(el);
     });
   }
@@ -143,21 +143,7 @@ function initGallery() {
   render('all');
 }
 
-/* ---- Scroll Reveal ---- */
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1, rootMargin: '30px' });
-
-/* ---- Init ---- */
 document.addEventListener('DOMContentLoaded', () => {
-  // Observe all reveal elements
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  
   renderWorks();
   initGallery();
 });

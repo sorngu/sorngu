@@ -8,25 +8,15 @@
 </head>
 <body>
 
-<div class="menu-overlay" id="menuOverlay">
-  <div class="menu-overlay-bg"></div>
-  <nav class="menu-nav">
-    <ul>
-      <li><a href="index.html" class="menu-link" data-delay="0">Home</a></li>
-      <li><a href="gallery.html" class="menu-link" data-delay="100">Gallery</a></li>
-      <li><a href="about.html" class="menu-link" data-delay="200">About</a></li>
-      <li><a href="#" class="menu-link" data-delay="300">Contact</a></li>
-    </ul>
-  </nav>
-  <div class="menu-footer">
-    <p>&copy; 2026 Photography</p>
-  </div>
-</div>
-
 <header class="header">
   <div class="header-inner">
     <a href="index.html" class="logo">Photography</a>
-    <button class="menu-btn" id="menuBtn" aria-label="Menu">
+    <nav class="nav">
+      <a href="#works" class="nav-link">Works</a>
+      <a href="gallery.html" class="nav-link">Gallery</a>
+      <a href="about.html" class="nav-link">About</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn">
       <span></span>
       <span></span>
     </button>
@@ -37,47 +27,34 @@
   <section class="hero">
     <div class="hero-img">
       <img src="picture/1.jpg" alt="">
-      <div class="hero-overlay"></div>
     </div>
-    <div class="hero-text">
-      <h1 class="hero-title">Visual<br>Stories</h1>
-      <p class="hero-sub">Capturing light, shadow & moments</p>
-      <a href="gallery.html" class="hero-btn">Explore work</a>
-    </div>
-    <div class="hero-scroll">
-      <span>Scroll</span>
-      <div class="scroll-bar"></div>
+    <div class="hero-content">
+      <h1>Visual Stories</h1>
+      <p>Photography Portfolio</p>
     </div>
   </section>
 
-  <section class="intro" id="intro">
+  <section class="section works" id="works">
     <div class="container">
-      <div class="intro-grid">
-        <div class="intro-col intro-text">
-          <h2 class="reveal">The art of<br>seeing</h2>
-          <p class="reveal">Every photograph is a conversation between light and shadow. Through my lens, I capture not just images, but emotions frozen in time.</p>
-          <a href="about.html" class="link-arrow reveal">
-            <span>About me</span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
-        </div>
-        <div class="intro-col intro-image-col">
-          <div class="intro-img-wrap reveal">
-            <img src="picture/2.jpg" alt="">
-          </div>
-        </div>
+      <h2 class="sec-title">Selected Works</h2>
+      <div class="grid" id="worksGrid"></div>
+      <div class="btn-wrap">
+        <a href="gallery.html" class="btn">View All</a>
       </div>
     </div>
   </section>
 
-  <section class="showcase" id="works">
+  <section class="section intro">
     <div class="container">
-      <h2 class="section-title reveal">Selected works</h2>
-      <div class="showcase-grid" id="worksGrid"></div>
-      <div class="showcase-cta reveal">
-        <a href="gallery.html" class="btn-primary">View full gallery</a>
+      <div class="intro-grid">
+        <div>
+          <h2 class="sec-title">About</h2>
+          <p class="intro-p">Every photograph is a conversation between light and shadow. Through my lens, I capture not just images, but emotions frozen in time.</p>
+          <a href="about.html" class="btn">Read More</a>
+        </div>
+        <div>
+          <img src="picture/2.jpg" alt="" class="intro-img">
+        </div>
       </div>
     </div>
   </section>
@@ -85,24 +62,24 @@
 
 <footer class="footer">
   <div class="container">
-    <div class="footer-grid">
-      <div>
-        <h3>Photography</h3>
-        <p>Visual storytelling through the lens</p>
-      </div>
-      <div class="footer-nav">
-        <a href="index.html">Home</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="about.html">About</a>
-      </div>
-      <div class="footer-social">
-        <a href="#">IG</a>
-        <a href="#">BE</a>
-        <a href="#">EM</a>
+    <div class="footer-inner">
+      <p>&copy; 2026 Photography</p>
+      <div class="footer-links">
+        <a href="#">Instagram</a>
+        <a href="#">Behance</a>
       </div>
     </div>
   </div>
 </footer>
+
+<div class="menu-overlay" id="menuOverlay">
+  <nav class="menu-nav">
+    <a href="index.html" class="menu-link">Home</a>
+    <a href="#works" class="menu-link">Works</a>
+    <a href="gallery.html" class="menu-link">Gallery</a>
+    <a href="about.html" class="menu-link">About</a>
+  </nav>
+</div>
 
 <div class="lightbox" id="lightbox">
   <button class="lb-close">&times;</button>

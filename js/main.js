@@ -1,155 +1,163 @@
+/* ============================================
+   IKEA-style Photography Portfolio - JS
+   ============================================ */
+
 const photos = [
-    { src: 'picture/3.jpg', category: 'landscape' },
-    { src: 'picture/4.jpg', category: 'street' },
-    { src: 'picture/5.jpg', category: 'portrait' },
-    { src: 'picture/6.jpg', category: 'landscape' },
-    { src: 'picture/7.JPG', category: 'street' },
-    { src: 'picture/8.JPG', category: 'portrait' },
-    { src: 'picture/9.JPG', category: 'landscape' },
-    { src: 'picture/10.jpg', category: 'street' },
-    { src: 'picture/11.JPG', category: 'portrait' },
-    { src: 'picture/12.jpg', category: 'landscape' },
-    { src: 'picture/13.jpg', category: 'street' },
-    { src: 'picture/14.jpg', category: 'portrait' },
-    { src: 'picture/15.jpg', category: 'landscape' },
-    { src: 'picture/33.jpg', category: 'street' },
-    { src: 'picture/34.jpg', category: 'portrait' },
-    { src: 'picture/35.jpg', category: 'landscape' },
-    { src: 'picture/36.jpg', category: 'street' },
-    { src: 'picture/37.jpg', category: 'portrait' },
-    { src: 'picture/38.jpg', category: 'landscape' },
-    { src: 'picture/39.jpg', category: 'street' },
-    { src: 'picture/40.jpg', category: 'portrait' },
-    { src: 'picture/41.jpg', category: 'landscape' },
-    { src: 'picture/42.jpg', category: 'street' },
-    { src: 'picture/43.jpg', category: 'portrait' },
+  { src: 'picture/3.jpg', label: 'Mountain Light' },
+  { src: 'picture/4.jpg', label: 'City Pulse' },
+  { src: 'picture/5.jpg', label: 'Silhouette' },
+  { src: 'picture/6.jpg', label: 'Golden Hour' },
+  { src: 'picture/7.JPG', label: 'Urban Flow' },
+  { src: 'picture/8.JPG', label: 'Quiet Moment' },
+  { src: 'picture/9.JPG', label: 'Horizon' },
+  { src: 'picture/10.jpg', label: 'Street Life' },
+  { src: 'picture/11.JPG', label: 'Portrait Study' },
+  { src: 'picture/12.jpg', label: 'Natural Light' },
+  { src: 'picture/13.jpg', label: 'Architecture' },
+  { src: 'picture/14.jpg', label: 'Shadows' },
+  { src: 'picture/15.jpg', label: 'Wide View' },
+  { src: 'picture/33.jpg', label: 'Texture' },
+  { src: 'picture/34.jpg', label: 'Reflection' },
+  { src: 'picture/35.jpg', label: 'Depth' },
+  { src: 'picture/36.jpg', label: 'Motion' },
+  { src: 'picture/37.jpg', label: 'Still Life' },
+  { src: 'picture/38.jpg', label: 'Pattern' },
+  { src: 'picture/39.jpg', label: 'Contrast' },
+  { src: 'picture/40.jpg', label: 'Mood' },
+  { src: 'picture/41.jpg', label: 'Vista' },
+  { src: 'picture/42.jpg', label: 'Alley' },
+  { src: 'picture/43.jpg', label: 'Twilight' },
 ];
 
-const lightbox = document.getElementById('lightbox');
-const lightboxImage = document.getElementById('lightboxImage');
-const lightboxClose = document.querySelector('.lightbox-close');
+/* ---- Menu ---- */
+const menuBtn = document.getElementById('menuBtn');
+const overlay = document.getElementById('menuOverlay');
+let menuOpen = false;
+
+menuBtn.addEventListener('click', () => {
+  menuOpen = !menuOpen;
+  menuBtn.classList.toggle('active');
+  overlay.classList.toggle('open');
+  document.body.style.overflow = menuOpen ? 'hidden' : '';
+  
+  // stagger menu links
+  if (menuOpen) {
+    document.querySelectorAll('.menu-link').forEach((link, i) => {
+      link.style.transitionDelay = `${i * 80}ms`;
+    });
+  } else {
+    document.querySelectorAll('.menu-link').forEach(link => {
+      link.style.transitionDelay = '0ms';
+      link.style.opacity = '0';
+      link.style.transform = 'translateY(40px)';
+    });
+  }
+});
+
+overlay.querySelectorAll('.menu-link').forEach(link => {
+  link.addEventListener('click', () => {
+    menuOpen = false;
+    menuBtn.classList.remove('active');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+/* ---- Lightbox ---- */
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+const lbClose = document.querySelector('.lb-close');
 
 function openLightbox(src) {
-    lightboxImage.src = src;
-    lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden';
+  lbImg.src = src;
+  lb.classList.add('active');
+  document.body.style.overflow = 'hidden';
 }
 
 function closeLightbox() {
-    lightbox.classList.remove('active');
-    document.body.style.overflow = '';
+  lb.classList.remove('active');
+  document.body.style.overflow = '';
 }
 
-function renderWorksGrid() {
-    const worksGrid = document.getElementById('worksGrid');
-    if (!worksGrid) return;
+lbClose.addEventListener('click', closeLightbox);
+lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && lb.classList.contains('active')) closeLightbox();
+});
+
+/* ---- Render Works Grid ---- */
+function renderWorks() {
+  const grid = document.getElementById('worksGrid');
+  if (!grid) return;
+  
+  const items = photos.slice(0, 6);
+  grid.innerHTML = items.map((p, i) => `
+    <div class="photo-item reveal" data-src="${p.src}" style="transition-delay:${i*100}ms">
+      <img src="${p.src}" alt="" loading="lazy">
+      <div class="photo-label">${p.label}</div>
+    </div>
+  `).join('');
+  
+  grid.querySelectorAll('.photo-item').forEach(el => {
+    el.addEventListener('click', () => openLightbox(el.dataset.src));
+    observer.observe(el);
+  });
+}
+
+/* ---- Render Gallery ---- */
+function initGallery() {
+  const grid = document.getElementById('galleryGrid');
+  if (!grid) return;
+  
+  function render(filter) {
+    const filtered = filter === 'all' ? photos : photos.filter(p => p.label);
+    // We'll use a simpler filter by index for demo
+    const cats = ['landscape','street','portrait'];
+    let filtered2 = filter === 'all' ? photos : photos.filter((_, i) => {
+      if (filter === 'landscape') return i % 3 === 0;
+      if (filter === 'street') return i % 3 === 1;
+      if (filter === 'portrait') return i % 3 === 2;
+      return true;
+    });
     
-    const featured = photos.slice(0, 6);
-    
-    worksGrid.innerHTML = featured.map((photo, index) => `
-        <div class="photo-item" data-src="${photo.src}" style="transition-delay: ${index * 100}ms">
-            <img src="${photo.src}" alt="Photo" loading="lazy">
-        </div>
+    grid.innerHTML = filtered2.map((p, i) => `
+      <div class="photo-item reveal" data-src="${p.src}" style="transition-delay:${i*60}ms">
+        <img src="${p.src}" alt="" loading="lazy">
+      </div>
     `).join('');
     
-    observeElements(worksGrid.querySelectorAll('.photo-item'));
-    
-    worksGrid.querySelectorAll('.photo-item').forEach(item => {
-        item.addEventListener('click', () => openLightbox(item.dataset.src));
+    grid.querySelectorAll('.photo-item').forEach(el => {
+      el.addEventListener('click', () => openLightbox(el.dataset.src));
+      observer.observe(el);
     });
+  }
+  
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      render(btn.dataset.filter);
+    });
+  });
+  
+  render('all');
 }
 
-function initGallery() {
-    const galleryGrid = document.getElementById('galleryGrid');
-    if (!galleryGrid) return;
-    
-    function renderGallery(filter = 'all') {
-        const filtered = filter === 'all' ? photos : photos.filter(p => p.category === filter);
-        
-        galleryGrid.innerHTML = filtered.map((photo, index) => `
-            <div class="photo-item" data-src="${photo.src}" data-category="${photo.category}" style="transition-delay: ${index * 50}ms">
-                <img src="${photo.src}" alt="Photo" loading="lazy">
-            </div>
-        `).join('');
-        
-        observeElements(galleryGrid.querySelectorAll('.photo-item'));
-        
-        galleryGrid.querySelectorAll('.photo-item').forEach(item => {
-            item.addEventListener('click', () => openLightbox(item.dataset.src));
-        });
+/* ---- Scroll Reveal ---- */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
     }
-    
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            renderGallery(btn.dataset.filter);
-        });
-    });
-    
-    renderGallery();
-}
+  });
+}, { threshold: 0.1, rootMargin: '30px' });
 
-function observeElements(elements) {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: '50px'
-    });
-    
-    elements.forEach(el => observer.observe(el));
-}
-
-function observeSectionHeaders() {
-    const headers = document.querySelectorAll('.section-header, .intro-grid > *');
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: '50px'
-    });
-    
-    headers.forEach((header, index) => {
-        header.style.opacity = '0';
-        header.style.transform = 'translateY(30px)';
-        header.style.transition = `opacity 0.8s ease ${index * 150}ms, transform 0.8s ease ${index * 150}ms`;
-        observer.observe(header);
-    });
-}
-
+/* ---- Init ---- */
 document.addEventListener('DOMContentLoaded', () => {
-    if (lightboxClose) {
-        lightboxClose.addEventListener('click', closeLightbox);
-    }
-    
-    if (lightbox) {
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                closeLightbox();
-            }
-        });
-    }
-    
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-            closeLightbox();
-        }
-    });
-    
-    renderWorksGrid();
-    initGallery();
-    observeSectionHeaders();
+  // Observe all reveal elements
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  
+  renderWorks();
+  initGallery();
 });

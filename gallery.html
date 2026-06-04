@@ -1,95 +1,79 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery | Photography Portfolio</title>
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Gallery | Photography</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <nav class="glass-nav">
-        <div class="nav-inner">
-            <a href="index.html" class="logo">Portfolio</a>
-            <ul class="nav-links">
-                <li><a href="index.html#works">Works</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="about.html">About</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <main>
-        <section class="works-section" style="padding-top: calc(var(--nav-height) + 4rem);">
-            <div class="container">
-                <header class="section-header">
-                    <h2 class="section-label">Gallery</h2>
-                    <p class="section-desc">Browse through the complete collection</p>
-                </header>
-                
-                <div class="filters">
-                    <div class="filter-buttons">
-                        <button class="filter-btn active" data-filter="all">All</button>
-                        <button class="filter-btn" data-filter="landscape">Landscape</button>
-                        <button class="filter-btn" data-filter="street">Street</button>
-                        <button class="filter-btn" data-filter="portrait">Portrait</button>
-                    </div>
-                </div>
-                
-                <div class="photo-grid" id="galleryGrid"></div>
-            </div>
-        </section>
-    </main>
+<div class="menu-overlay" id="menuOverlay">
+  <div class="menu-overlay-bg"></div>
+  <nav class="menu-nav">
+    <ul>
+      <li><a href="index.html" class="menu-link" data-delay="0">Home</a></li>
+      <li><a href="gallery.html" class="menu-link" data-delay="100">Gallery</a></li>
+      <li><a href="about.html" class="menu-link" data-delay="200">About</a></li>
+      <li><a href="#" class="menu-link" data-delay="300">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="menu-footer"><p>&copy; 2026 Photography</p></div>
+</div>
 
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <h3>Portfolio</h3>
-                    <p>Capturing moments, creating memories</p>
-                </div>
-                <nav class="footer-nav">
-                    <a href="index.html">Home</a>
-                    <a href="index.html#works">Works</a>
-                    <a href="gallery.html">Gallery</a>
-                    <a href="about.html">About</a>
-                </nav>
-                <div class="footer-social">
-                    <a href="#" aria-label="Instagram">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <rect x="2" y="2" width="20" height="20" rx="5"/>
-                            <circle cx="12" cy="12" r="4"/>
-                            <circle cx="18" cy="6" r="1.5" fill="currentColor"/>
-                        </svg>
-                    </a>
-                    <a href="#" aria-label="Behance">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M3 12h8c2 0 4-1 4-3s-2-3-4-3H3v12h8c2.5 0 5-1 5-3.5S13.5 12 11 12"/>
-                            <path d="M15 7h6M18 12h6M21 17h-6"/>
-                        </svg>
-                    </a>
-                    <a href="#" aria-label="Email">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <rect x="2" y="4" width="20" height="16" rx="2"/>
-                            <path d="M22 6l-10 7L2 6"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Portfolio. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">Photography</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
 
-    <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" aria-label="Close">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M18 6L6 18M6 6l12 12"/>
-            </svg>
-        </button>
-        <img src="" alt="" id="lightboxImage">
+<main>
+  <div class="container">
+    <div class="page-header">
+      <h1 class="reveal">Gallery</h1>
+      <p class="reveal">Browse the complete collection</p>
     </div>
 
-    <script src="js/main.js"></script>
+    <div class="gallery-filters reveal">
+      <div class="filter-group">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="landscape">Landscape</button>
+        <button class="filter-btn" data-filter="street">Street</button>
+        <button class="filter-btn" data-filter="portrait">Portrait</button>
+      </div>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Photography</h3>
+        <p>Visual storytelling through the lens</p>
+      </div>
+      <div class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="about.html">About</a>
+      </div>
+      <div class="footer-social">
+        <a href="#">IG</a><a href="#">BE</a><a href="#">EM</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lb-close">&times;</button>
+  <img src="" alt="" id="lbImg">
+</div>
+
+<script src="js/main.js"></script>
 </body>
 </html>

@@ -1,127 +1,89 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | Photography Portfolio</title>
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>About | Photography</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <nav class="glass-nav">
-        <div class="nav-inner">
-            <a href="index.html" class="logo">Portfolio</a>
-            <ul class="nav-links">
-                <li><a href="index.html#works">Works</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="about.html">About</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <main>
-        <section class="about-section">
-            <div class="container">
-                <header class="section-header">
-                    <h2 class="section-label">About</h2>
-                    <p class="section-desc">The story behind the lens</p>
-                </header>
-                
-                <div class="about-content">
-                    <div class="about-image">
-                        <img src="picture/45.jpg" alt="Photographer">
-                    </div>
-                    <div class="about-text">
-                        <h3>The Vision</h3>
-                        <p>
-                            With a deep sensitivity to light and shadow from an early age, photography is not just documentation for me—it's a way to express emotions and capture the intangible beauty that exists in every moment.
-                        </p>
-                        <p>
-                            I believe every frame tells a story. Every shadow holds meaning. Photography is about capturing not just what we see, but how we feel in that instant—the invisible connections that make a moment unforgettable.
-                        </p>
-                        
-                        <h3>Expertise</h3>
-                        <p>
-                            Specializing in landscape, street, and portrait photography, I find beauty in the ordinary. Whether it's the grandeur of natural landscapes, the human moments on city streets, or the genuine emotions of people, they all become protagonists in my lens.
-                        </p>
-                        <p>
-                            Photography has taught me to observe the world with intention and capture beauty through careful consideration of light, composition, and timing.
-                        </p>
-                        
-                        <div class="contact-section">
-                            <h3>Get in Touch</h3>
-                            <div class="contact-grid">
-                                <div class="contact-item">
-                                    <span class="contact-label">Email</span>
-                                    <span class="contact-value">hello@portfolio.com</span>
-                                </div>
-                                <div class="contact-item">
-                                    <span class="contact-label">Location</span>
-                                    <span class="contact-value">Shanghai, China</span>
-                                </div>
-                            </div>
-                            
-                            <div class="social-links">
-                                <a href="#" class="social-link">Instagram</a>
-                                <a href="#" class="social-link">Behance</a>
-                                <a href="#" class="social-link">500px</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+<div class="menu-overlay" id="menuOverlay">
+  <div class="menu-overlay-bg"></div>
+  <nav class="menu-nav">
+    <ul>
+      <li><a href="index.html" class="menu-link" data-delay="0">Home</a></li>
+      <li><a href="gallery.html" class="menu-link" data-delay="100">Gallery</a></li>
+      <li><a href="about.html" class="menu-link" data-delay="200">About</a></li>
+      <li><a href="#" class="menu-link" data-delay="300">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="menu-footer"><p>&copy; 2026 Photography</p></div>
+</div>
 
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <h3>Portfolio</h3>
-                    <p>Capturing moments, creating memories</p>
-                </div>
-                <nav class="footer-nav">
-                    <a href="index.html">Home</a>
-                    <a href="index.html#works">Works</a>
-                    <a href="gallery.html">Gallery</a>
-                    <a href="about.html">About</a>
-                </nav>
-                <div class="footer-social">
-                    <a href="#" aria-label="Instagram">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <rect x="2" y="2" width="20" height="20" rx="5"/>
-                            <circle cx="12" cy="12" r="4"/>
-                            <circle cx="18" cy="6" r="1.5" fill="currentColor"/>
-                        </svg>
-                    </a>
-                    <a href="#" aria-label="Behance">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M3 12h8c2 0 4-1 4-3s-2-3-4-3H3v12h8c2.5 0 5-1 5-3.5S13.5 12 11 12"/>
-                            <path d="M15 7h6M18 12h6M21 17h-6"/>
-                        </svg>
-                    </a>
-                    <a href="#" aria-label="Email">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <rect x="2" y="4" width="20" height="16" rx="2"/>
-                            <path d="M22 6l-10 7L2 6"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Portfolio. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">Photography</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
 
-    <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" aria-label="Close">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M18 6L6 18M6 6l12 12"/>
-            </svg>
-        </button>
-        <img src="" alt="" id="lightboxImage">
+<main>
+  <div class="container">
+    <div class="page-header">
+      <h1 class="reveal">About</h1>
+      <p class="reveal">The person behind the lens</p>
     </div>
 
-    <script src="js/main.js"></script>
+    <div class="about-wrap">
+      <div class="reveal">
+        <img src="picture/45.jpg" alt="">
+      </div>
+      <div>
+        <h2 class="reveal">The Vision</h2>
+        <p class="reveal">Every frame tells a story. Every shadow holds meaning. Photography is not just about capturing light — it's about capturing emotion, timing, and the invisible connections that make a moment unforgettable.</p>
+        <p class="reveal">With a deep sensitivity to light and shadow from an early age, I've dedicated myself to finding beauty in the ordinary and extraordinary alike.</p>
+        
+        <h2 class="reveal">Expertise</h2>
+        <p class="reveal">Specializing in landscape, street, and portrait photography, I work across diverse environments and conditions. From the grandeur of mountain ranges to the quiet intimacy of a street corner, every scene offers a new perspective.</p>
+        <p class="reveal">My approach is simple: observe patiently, compose intentionally, and capture authentically. The result is work that feels both timeless and immediate.</p>
+        
+        <div class="contact-block reveal">
+          <h3>Get in touch</h3>
+          <p>hello@photography.com</p>
+          <p>Shanghai, China</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Photography</h3>
+        <p>Visual storytelling through the lens</p>
+      </div>
+      <div class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="about.html">About</a>
+      </div>
+      <div class="footer-social">
+        <a href="#">IG</a><a href="#">BE</a><a href="#">EM</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lb-close">&times;</button>
+  <img src="" alt="" id="lbImg">
+</div>
+
+<script src="js/main.js"></script>
 </body>
 </html>

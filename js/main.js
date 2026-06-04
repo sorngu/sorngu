@@ -46,11 +46,13 @@ function renderWorksGrid() {
     
     const featured = photos.slice(0, 6);
     
-    worksGrid.innerHTML = featured.map(photo => `
-        <div class="photo-item" data-src="${photo.src}">
+    worksGrid.innerHTML = featured.map((photo, index) => `
+        <div class="photo-item" data-src="${photo.src}" style="transition-delay: ${index * 100}ms">
             <img src="${photo.src}" alt="Photo" loading="lazy">
         </div>
     `).join('');
+    
+    observeElements(worksGrid.querySelectorAll('.photo-item'));
     
     worksGrid.querySelectorAll('.photo-item').forEach(item => {
         item.addEventListener('click', () => openLightbox(item.dataset.src));
@@ -64,11 +66,13 @@ function initGallery() {
     function renderGallery(filter = 'all') {
         const filtered = filter === 'all' ? photos : photos.filter(p => p.category === filter);
         
-        galleryGrid.innerHTML = filtered.map(photo => `
-            <div class="photo-item" data-src="${photo.src}" data-category="${photo.category}">
+        galleryGrid.innerHTML = filtered.map((photo, index) => `
+            <div class="photo-item" data-src="${photo.src}" data-category="${photo.category}" style="transition-delay: ${index * 50}ms">
                 <img src="${photo.src}" alt="Photo" loading="lazy">
             </div>
         `).join('');
+        
+        observeElements(galleryGrid.querySelectorAll('.photo-item'));
         
         galleryGrid.querySelectorAll('.photo-item').forEach(item => {
             item.addEventListener('click', () => openLightbox(item.dataset.src));
@@ -84,6 +88,46 @@ function initGallery() {
     });
     
     renderGallery();
+}
+
+function observeElements(elements) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '50px'
+    });
+    
+    elements.forEach(el => observer.observe(el));
+}
+
+function observeSectionHeaders() {
+    const headers = document.querySelectorAll('.section-header, .intro-grid > *');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '50px'
+    });
+    
+    headers.forEach((header, index) => {
+        header.style.opacity = '0';
+        header.style.transform = 'translateY(30px)';
+        header.style.transition = `opacity 0.8s ease ${index * 150}ms, transform 0.8s ease ${index * 150}ms`;
+        observer.observe(header);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -107,4 +151,5 @@ document.addEventListener('DOMContentLoaded', () => {
     
     renderWorksGrid();
     initGallery();
+    observeSectionHeaders();
 });

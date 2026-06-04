@@ -13,6 +13,7 @@ const photos = [
   'picture/42.jpg', 'picture/43.jpg',
 ];
 
+/* Lightbox */
 const lb = document.getElementById('lightbox');
 const lbImg = document.getElementById('lbImg');
 
@@ -33,24 +34,42 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && lb?.classList.contains('active')) closeLB();
 });
 
-function renderGrid(id, count) {
+/* Observer for reveal animations */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.05, rootMargin: '40px' });
+
+/* Render grid */
+function renderGrid(id, count, stagger = true) {
   const grid = document.getElementById(id);
   if (!grid) return;
   
   const items = count ? photos.slice(0, count) : photos;
   
-  grid.innerHTML = items.map(p => `
-    <div class="photo-item" data-src="${p}">
+  grid.innerHTML = items.map((p, i) => `
+    <div class="photo-card" data-src="${p}" ${stagger ? `style="transition-delay:${i*60}ms"` : ''}>
       <img src="${p}" alt="" loading="lazy">
     </div>
   `).join('');
   
-  grid.querySelectorAll('.photo-item').forEach(el => {
+  grid.querySelectorAll('.photo-card').forEach(el => {
     el.addEventListener('click', () => openLB(el.dataset.src));
+    observer.observe(el);
   });
 }
 
+/* Observe all .reveal elements */
+function observeReveals() {
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-  renderGrid('worksGrid', 12);
+  renderGrid('worksGrid', 9);
   renderGrid('galleryGrid');
+  observeReveals();
 });

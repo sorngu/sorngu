@@ -8,29 +8,67 @@
 </head>
 <body>
 
-<div class="container">
-  <div class="nav">
-    <a href="index.html">Home</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="about.html">About</a>
-  </div>
-
-  <div class="index-wrap">
-    <div class="index-title">Photography</div>
-    <ul class="project-list">
+<nav class="glass-nav">
+  <div class="container">
+    <a href="index.html" class="logo">Photography</a>
+    <ul class="nav-links">
+      <li><a href="#works">Works</a></li>
       <li><a href="gallery.html">Gallery</a></li>
       <li><a href="about.html">About</a></li>
-      <li><a href="https://instagram.com">Instagram</a></li>
-      <li><a href="https://behance.net">Behance</a></li>
     </ul>
   </div>
+</nav>
 
-  <div class="footer">
+<main>
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="picture/1.jpg" alt="">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-text">
+      <h1>Visual Stories</h1>
+      <p>Photography Portfolio</p>
+    </div>
+  </section>
+
+  <section class="section" id="works">
+    <div class="container">
+      <h2 class="section-title reveal">Selected Works</h2>
+      <div class="vsco-grid" id="worksGrid"></div>
+      <div class="btn-wrap">
+        <a href="gallery.html" class="btn">View All</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title reveal">About</h2>
+      <div class="about-section reveal">
+        <p>Every frame tells a story. Every shadow holds meaning. Photography is not just about capturing light — it's about capturing emotion, timing, and the invisible connections that make a moment unforgettable.</p>
+        <a href="about.html" class="btn" style="margin-top:24px;display:inline-block;">Read More</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
     <div class="footer-inner">
-      <p>&copy; 2026</p>
+      <p>&copy; 2026 Photography</p>
+      <div class="footer-links">
+        <a href="#">Instagram</a>
+        <a href="#">Behance</a>
+      </div>
     </div>
   </div>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lb-close">&times;</button>
+  <img src="" alt="" id="lbImg">
 </div>
 
+<script src="js/main.js"></script>
 </body>
 </html>

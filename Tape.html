@@ -559,8 +559,6 @@
             cursor: pointer;
             float: none;
             position: absolute;
-
-
         }
         .image-grid {
             position: relative;
@@ -598,7 +596,6 @@
             justify-content: space-between;
             flex-direction: column;
             align-items: flex-end;
-
         }
         .dark-mode .site-footer img {
             filter: invert(10) brightness(10);
@@ -614,6 +611,127 @@
             align-items: flex-start;
         }
         .section-inner.thin {max-width: 1111px;}
+
+        /* Lightbox Slider Styles */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+        .lightbox-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .lightbox-image-wrapper {
+            display: flex;
+            transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+            will-change: transform;
+        }
+        .lightbox-image {
+            max-width: 90vw;
+            max-height: 80vh;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+        .lightbox-caption {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: #fff;
+            font-family: inherit;
+        }
+        .lightbox-caption h4 {
+            margin: 0 0 5px 0;
+            font-size: 18px;
+            font-weight: normal;
+        }
+        .lightbox-caption p {
+            margin: 0;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 10001;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+        .lightbox-close:hover {
+            opacity: 1;
+        }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 10001;
+            opacity: 0.5;
+            transition: opacity 0.3s, background 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox-nav:hover {
+            opacity: 1;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .lightbox-nav.prev {
+            left: 20px;
+        }
+        .lightbox-nav.next {
+            right: 20px;
+        }
+        .lightbox-counter {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #fff;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+        .lightbox-swipe-hint {
+            position: absolute;
+            bottom: 120px;
+            color: #fff;
+            font-size: 12px;
+            opacity: 0.5;
+        }
     </style>
     </head>
     <body>
@@ -631,95 +749,225 @@
             body.classList.toggle('dark-mode');
             menu.classList.toggle('dark-mode');
         }
-    </script>
 
-    <script>
         var currentTime = new Date().getHours();
 
         if (currentTime >= 18 || currentTime < 6) {
             document.body.classList.add('dark-mode');
             document.querySelector('.menu').classList.add('dark-mode');
         }
-        function handleImageClick(event) {
-            var imageGrid = document.querySelector('.image-grid');
-            var menu = document.querySelector('.menu');
-            var clickedImage = event.target.closest('div.image-item');
-            var allImages = imageGrid.querySelectorAll('div.image-item');
 
-            allImages.forEach(image => {
-                image.classList.add('hidden');
+        // Lightbox functionality with swipe support
+        var lightbox = null;
+        var currentIndex = 0;
+        var allImageItems = [];
+        var touchStartX = 0;
+        var touchEndX = 0;
+        var isDragging = false;
+        var dragStartX = 0;
+        var dragOffsetX = 0;
+
+        function createLightbox() {
+            lightbox = document.createElement('div');
+            lightbox.className = 'lightbox';
+            lightbox.innerHTML = `
+                <button class="lightbox-close">&times;</button>
+                <span class="lightbox-counter"></span>
+                <div class="lightbox-content">
+                    <button class="lightbox-nav prev">&#10094;</button>
+                    <div class="lightbox-image-wrapper"></div>
+                    <button class="lightbox-nav next">&#10095;</button>
+                </div>
+                <div class="lightbox-caption">
+                    <h4></h4>
+                    <p></p>
+                </div>
+                <span class="lightbox-swipe-hint">Swipe to navigate</span>
+            `;
+            document.body.appendChild(lightbox);
+
+            lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+            lightbox.querySelector('.lightbox-nav.prev').addEventListener('click', (e) => {
+                e.stopPropagation();
+                prevImage();
+            });
+            lightbox.querySelector('.lightbox-nav.next').addEventListener('click', (e) => {
+                e.stopPropagation();
+                nextImage();
             });
 
-            var allTextElements = document.querySelectorAll('*:not(script, style):not(:has(*)):not(.menu *)');
-            allTextElements.forEach(textElement => {
-                textElement.classList.add('hidden');
+            // Touch events
+            lightbox.addEventListener('touchstart', handleTouchStart, { passive: true });
+            lightbox.addEventListener('touchmove', handleTouchMove, { passive: false });
+            lightbox.addEventListener('touchend', handleTouchEnd, { passive: true });
+
+            // Mouse drag events
+            lightbox.addEventListener('mousedown', handleMouseDown);
+            document.addEventListener('mousemove', handleMouseMove);
+            document.addEventListener('mouseup', handleMouseUp);
+
+            // Click outside to close
+            lightbox.querySelector('.lightbox-content').addEventListener('click', (e) => {
+                if (e.target === lightbox.querySelector('.lightbox-content')) {
+                    closeLightbox();
+                }
             });
 
-            var singleImageFrame = document.createElement('div');
-            singleImageFrame.classList.add('single-image-frame');
+            // Keyboard navigation
+            document.addEventListener('keydown', handleKeyDown);
+        }
 
-            var singleImage = document.createElement('img');
-            singleImage.src = clickedImage.querySelector('img').src;
-            singleImage.classList.add('single-image');
+        function handleTouchStart(e) {
+            touchStartX = e.touches[0].clientX;
+            isDragging = true;
+            dragStartX = touchStartX;
+            dragOffsetX = 0;
+            const wrapper = lightbox.querySelector('.lightbox-image-wrapper');
+            wrapper.style.transition = 'none';
+        }
 
-            singleImageFrame.appendChild(singleImage);
+        function handleTouchMove(e) {
+            if (!isDragging) return;
+            touchEndX = e.touches[0].clientX;
+            dragOffsetX = touchEndX - dragStartX;
+            const wrapper = lightbox.querySelector('.lightbox-image-wrapper');
+            const offset = currentIndex * -100;
+            wrapper.style.transform = `translateX(calc(${offset}% + ${dragOffsetX}px))`;
+            e.preventDefault();
+        }
 
-            var title = clickedImage.querySelector('h4').textContent;
-            var description = clickedImage.querySelector('p').textContent;
-            var captionElementTitle = document.createElement('div');
-            captionElementTitle.textContent = title;
-            captionElementTitle.classList.add('image-caption-title');
-            var captionElementDescription = document.createElement('div');
-            captionElementDescription.textContent = description;
-            captionElementDescription.classList.add('image-caption-description');
+        function handleTouchEnd() {
+            if (!isDragging) return;
+            isDragging = false;
+            const wrapper = lightbox.querySelector('.lightbox-image-wrapper');
+            wrapper.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1)';
 
-            singleImageFrame.appendChild(captionElementTitle);
-            singleImageFrame.appendChild(captionElementDescription);
-
-            var mainFrame = document.querySelector('.entry-content.section-inner.thin');
-            var frameWidth = mainFrame.offsetWidth;
-            var frameHeight = mainFrame.offsetHeight;
-
-            const isMobile = window.innerWidth < 768;
-            if (isMobile) {
-                singleImage.style.maxWidth = '300px';
-                singleImage.style.maxHeight = '300px';
+            const swipeThreshold = 50;
+            if (dragOffsetX < -swipeThreshold && currentIndex < allImageItems.length - 1) {
+                nextImage();
+            } else if (dragOffsetX > swipeThreshold && currentIndex > 0) {
+                prevImage();
             } else {
-                singleImage.style.maxWidth = '560px';
-                singleImage.style.maxHeight = '600px';
+                updateLightboxPosition(false);
+            }
+            dragOffsetX = 0;
+        }
+
+        function handleMouseDown(e) {
+            if (e.target.closest('.lightbox-nav') || e.target.closest('.lightbox-close')) return;
+            isDragging = true;
+            dragStartX = e.clientX;
+            dragOffsetX = 0;
+            const wrapper = lightbox.querySelector('.lightbox-image-wrapper');
+            wrapper.style.transition = 'none';
+        }
+
+        function handleMouseMove(e) {
+            if (!isDragging) return;
+            dragOffsetX = e.clientX - dragStartX;
+            const wrapper = lightbox.querySelector('.lightbox-image-wrapper');
+            const offset = currentIndex * -100;
+            wrapper.style.transform = `translateX(calc(${offset}% + ${dragOffsetX}px))`;
+        }
+
+        function handleMouseUp() {
+            if (!isDragging) return;
+            isDragging = false;
+            const wrapper = lightbox.querySelector('.lightbox-image-wrapper');
+            wrapper.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1)';
+
+            const swipeThreshold = 50;
+            if (dragOffsetX < -swipeThreshold && currentIndex < allImageItems.length - 1) {
+                nextImage();
+            } else if (dragOffsetX > swipeThreshold && currentIndex > 0) {
+                prevImage();
+            } else {
+                updateLightboxPosition(false);
+            }
+            dragOffsetX = 0;
+        }
+
+        function handleKeyDown(e) {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'ArrowLeft') prevImage();
+            else if (e.key === 'ArrowRight') nextImage();
+            else if (e.key === 'Escape') closeLightbox();
+        }
+
+        function updateLightboxPosition(animate = true) {
+            const wrapper = lightbox.querySelector('.lightbox-image-wrapper');
+            if (!animate) {
+                wrapper.style.transition = 'none';
+            }
+            wrapper.style.transform = `translateX(${currentIndex * -100}%)`;
+            if (!animate) {
+                wrapper.offsetHeight;
+                wrapper.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1)';
             }
 
-            document.body.appendChild(singleImageFrame);
+            const caption = lightbox.querySelector('.lightbox-caption');
+            const item = allImageItems[currentIndex];
+            caption.querySelector('h4').textContent = item.querySelector('h4').textContent;
+            caption.querySelector('p').textContent = item.querySelector('p').textContent;
 
-            singleImageFrame.style.display = 'flex';
-            singleImageFrame.style.flexDirection = 'column';
+            const counter = lightbox.querySelector('.lightbox-counter');
+            counter.textContent = `${currentIndex + 1} / ${allImageItems.length}`;
+        }
+
+        function nextImage() {
+            if (currentIndex < allImageItems.length - 1) {
+                currentIndex++;
+                updateLightboxPosition();
+            }
+        }
+
+        function prevImage() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateLightboxPosition();
+            }
+        }
+
+        function openLightbox(index) {
+            if (!lightbox) createLightbox();
+            currentIndex = index;
+            const wrapper = lightbox.querySelector('.lightbox-image-wrapper');
+            wrapper.innerHTML = '';
+            wrapper.style.transform = `translateX(${currentIndex * -100}%)`;
+
+            allImageItems.forEach((item, i) => {
+                const img = document.createElement('img');
+                img.src = item.querySelector('img').src;
+                img.className = 'lightbox-image';
+                img.alt = item.querySelector('img').alt;
+                wrapper.appendChild(img);
+            });
+
+            updateLightboxPosition(false);
 
             setTimeout(() => {
-                singleImage.style.opacity = 1;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
             }, 10);
+        }
 
-            document.body.style.overflow = 'hidden';
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
 
-            singleImageFrame.addEventListener('click', function () {
-                allImages.forEach(image => {
-                    image.classList.remove('hidden');
-                });
-
-                allTextElements.forEach(textElement => {
-                    textElement.classList.remove('hidden');
-                });
-
-                document.body.removeChild(singleImageFrame);
-
-                document.body.style.overflow = 'auto';
-            });
+        function handleImageClick(event) {
+            var clickedImage = event.target.closest('div.image-item');
+            if (!clickedImage) return;
+            allImageItems = Array.from(document.querySelectorAll('.image-grid div.image-item'));
+            var index = allImageItems.indexOf(clickedImage);
+            openLightbox(index);
         }
 
         var images = document.querySelectorAll('.image-grid div.image-item');
         images.forEach(image => {
             image.addEventListener('click', handleImageClick);
         });
-
     </script>
 </div>
 <footer class="site-footer section-inner align-right">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -8,84 +8,29 @@
 </head>
 <body>
 
-<header class="header">
-  <div class="header-inner">
-    <a href="index.html" class="logo">Photography</a>
-    <nav class="nav">
-      <a href="#works" class="nav-link">Works</a>
-      <a href="gallery.html" class="nav-link">Gallery</a>
-      <a href="about.html" class="nav-link">About</a>
-    </nav>
-    <button class="menu-btn" id="menuBtn">
-      <span></span>
-      <span></span>
-    </button>
+<div class="container">
+  <div class="nav">
+    <a href="index.html">Home</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="about.html">About</a>
   </div>
-</header>
 
-<main>
-  <section class="hero">
-    <div class="hero-img">
-      <img src="picture/1.jpg" alt="">
-    </div>
-    <div class="hero-content">
-      <h1>Visual Stories</h1>
-      <p>Photography Portfolio</p>
-    </div>
-  </section>
+  <div class="index-wrap">
+    <div class="index-title">Photography</div>
+    <ul class="project-list">
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="https://instagram.com">Instagram</a></li>
+      <li><a href="https://behance.net">Behance</a></li>
+    </ul>
+  </div>
 
-  <section class="section works" id="works">
-    <div class="container">
-      <h2 class="sec-title">Selected Works</h2>
-      <div class="grid" id="worksGrid"></div>
-      <div class="btn-wrap">
-        <a href="gallery.html" class="btn">View All</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section intro">
-    <div class="container">
-      <div class="intro-grid">
-        <div>
-          <h2 class="sec-title">About</h2>
-          <p class="intro-p">Every photograph is a conversation between light and shadow. Through my lens, I capture not just images, but emotions frozen in time.</p>
-          <a href="about.html" class="btn">Read More</a>
-        </div>
-        <div>
-          <img src="picture/2.jpg" alt="" class="intro-img">
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer class="footer">
-  <div class="container">
+  <div class="footer">
     <div class="footer-inner">
-      <p>&copy; 2026 Photography</p>
-      <div class="footer-links">
-        <a href="#">Instagram</a>
-        <a href="#">Behance</a>
-      </div>
+      <p>&copy; 2026</p>
     </div>
   </div>
-</footer>
-
-<div class="menu-overlay" id="menuOverlay">
-  <nav class="menu-nav">
-    <a href="index.html" class="menu-link">Home</a>
-    <a href="#works" class="menu-link">Works</a>
-    <a href="gallery.html" class="menu-link">Gallery</a>
-    <a href="about.html" class="menu-link">About</a>
-  </nav>
 </div>
 
-<div class="lightbox" id="lightbox">
-  <button class="lb-close">&times;</button>
-  <img src="" alt="" id="lbImg">
-</div>
-
-<script src="js/main.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -8,42 +8,29 @@
 </head>
 <body>
 
-<header class="header">
-  <div class="header-inner">
-    <a href="index.html" class="logo">Photography</a>
-    <nav class="nav">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="gallery.html" class="nav-link">Gallery</a>
-      <a href="about.html" class="nav-link">About</a>
-    </nav>
-    <button class="menu-btn" id="menuBtn">
-      <span></span><span></span>
-    </button>
+<div class="container">
+  <div class="nav">
+    <a href="index.html">Home</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="about.html">About</a>
   </div>
-</header>
 
-<main>
-  <div class="container">
-    <div class="page-header">
-      <h1>Gallery</h1>
-      <p>Browse the collection</p>
-    </div>
-
-    <div class="gallery-filters">
-      <div class="filters">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="landscape">Landscape</button>
-        <button class="filter-btn" data-filter="street">Street</button>
-        <button class="filter-btn" data-filter="portrait">Portrait</button>
-      </div>
-    </div>
-
-    <div class="gallery-grid" id="galleryGrid"></div>
+  <div class="page-header">
+    <div class="page-title">Gallery</div>
+    <div class="page-sub">A collection of moments</div>
   </div>
-</main>
 
-<footer class="footer">
-  <div class="container">
+  <div class="desc">
+    Light makes familiar things unfamiliar, and unfamiliar things become familiar. These moments made of light are pieced together into rhythms that compose my existence.
+  </div>
+
+  <div class="photo-grid" id="galleryGrid"></div>
+
+  <div class="page-nav">
+    <a href="index.html">Back</a>
+  </div>
+
+  <div class="footer">
     <div class="footer-inner">
       <p>&copy; 2026 Photography</p>
       <div class="footer-links">
@@ -52,14 +39,6 @@
       </div>
     </div>
   </div>
-</footer>
-
-<div class="menu-overlay" id="menuOverlay">
-  <nav class="menu-nav">
-    <a href="index.html" class="menu-link">Home</a>
-    <a href="gallery.html" class="menu-link">Gallery</a>
-    <a href="about.html" class="menu-link">About</a>
-  </nav>
 </div>
 
 <div class="lightbox" id="lightbox">

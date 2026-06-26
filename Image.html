@@ -135,18 +135,25 @@
             left: 0;
             pointer-events: none;
             transition: opacity 1.5s ease;
+            visibility: hidden;
+            height: 0;
+            overflow: hidden;
         }
 
         .page-section.active {
             opacity: 1;
             position: relative;
             pointer-events: auto;
+            visibility: visible;
+            height: auto;
         }
         
         .page-section.prev-active {
             opacity: 1;
             position: relative;
             pointer-events: auto;
+            visibility: visible;
+            height: auto;
         }
         
         /* 视频容器样式 */
@@ -478,20 +485,16 @@
 
             const currentSection = document.getElementById('page-' + currentPage);
             const targetSection = document.getElementById('page-' + pageNum);
-            const container = document.querySelector('main#site-content');
 
             // 旧页面淡出
             currentSection.style.opacity = '0';
             currentSection.classList.remove('active');
             
-            // 设置容器高度为新页面的高度
-            container.style.height = targetSection.scrollHeight + 'px';
-            
             // 新页面先显示
             targetSection.classList.add('active');
             currentPage = pageNum;
             
-            // 然后新页面淡入（类似photograph.html图片效果）
+            // 然后新页面淡入
             setTimeout(function() {
                 targetSection.style.opacity = '1';
                 // 重置滚动位置

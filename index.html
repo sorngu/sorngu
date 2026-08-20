@@ -1,339 +1,1549 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>fotomemo</title>
+<meta name="description" content="fotomemo is a creative studio specialised in brand identity design, print, packaging, website design and creative direction. ">
+<meta name="viewport" content="initial-scale=1.0, width=device-width">
 
+<style>
+/* =========================================================
+   1of1studio — 严格1:1复刻全局基础样式
+   ========================================================= */
+/* CSS变量与24列栅格系统（原站事实） */
+:root {
+    --vw: 1vw;
+    --scrollbar: 0px;
+    --spacing4: 4px;
+    --spacing6: 6px;
+    --spacing8: 8px;
+    --spacing12: 12px;
+    --spacing16: 16px;
+    --spacing24: 24px;
+    --spacing32: 32px;
+    --spacing40: 40px;
+    --spacing64: 64px;
+    --spacing80: 80px;
+    --spacing120: 120px;
+    --spacing200: 200px;
+    --numberOfColumns: 24;
+    --margin: 16px;
+    --gutter: 16px;
+    --column: calc(
+        (1 / var(--numberOfColumns)) *
+        ((100 * var(--vw)) - (var(--margin) * 2) - ((var(--numberOfColumns) - 1) * (var(--gutter))))
+    );
+    --ink: #434343;        /* 原站 black / #434343 */
+    --ink-soft: #707070;   /* black750 */
+    --ink-faint: #b4b1b1;  /* black500 */
+    --line: #b4b1b1;       /* 下分隔线 */
+    --line-strong: #707070; /* 顶/底部分隔线 */
+    --bg: #fff;
+    --bg-soft: #f0f0f0;   /* hover背景 & loader背景 */
+    --bg-warm: #f0f0f0;
+    --ease: cubic-bezier(0.33, 1, 0.68, 1);
+    --ease-soft: cubic-bezier(0.95, 0, 0.3, 1);
+}
+@media (max-width: 900px) {
+    :root {
+        --spacing80: 64px;
+        --spacing120: 80px;
+        --spacing200: 120px;
+        --numberOfColumns: 12;
+    }
+}
+@media (max-width: 480px) {
+    :root {
+        --spacing16: 8px;
+        --spacing24: 16px;
+        --spacing32: 24px;
+        --spacing40: 32px;
+        --spacing64: 40px;
+        --spacing80: 64px;
+        --spacing120: 80px;
+        --spacing200: 120px;
+        --numberOfColumns: 12;
+    }
+}
 
-  <link rel="icon" href="css/2.ico" />
-    <!-- For iPhone -->
-    <link rel="apple-touch-icon" href="css/2.ico">
-    <!-- For iPhone Retina display -->
-    <link rel="apple-touch-icon" sizes="180x180" href="css/2.ico">
-    <!-- For iPad -->
-    <link rel="apple-touch-icon" sizes="152x152" href="css/2.ico">
-    <!-- For iPad Retina display -->
-    <link rel="apple-touch-icon" sizes="167x167" href="css/2.ico">
-     <link rel="manifest" href="css/manifest.json">
-    <!-- 设置网页标题 -->
-    
+html {
+    box-sizing: border-box;
+    text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: none;
+    -webkit-font-smoothing: antialiased;
+    color: var(--ink);
+    background-color: var(--bg);
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    line-height: 12px;
+    letter-spacing: -0.0025em;
+    font-weight: 700;
+    text-transform: none;
+}
+@media (max-width: 480px) {
+    html { font-size: 9px; line-height: 11px; }
+}
 
-    <!-- 设置Web App的图标 -->
-    <link rel="apple-touch-icon" href="css/2.ico">
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
 
-    <!-- 设置应用的启动样式 -->
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+h1, h2, h3, h4, h5, h6 {
+    font-family: inherit;
+    font-size: 10px;
+    line-height: 12px;
+    letter-spacing: 0.02em;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+@media (max-width: 480px) {
+    h1, h2, h3, h4, h5, h6 { font-size: 9px; line-height: 11px; }
+}
 
-    <!-- 在主屏幕上启动时，网页显示的背景颜色 -->
-    <meta name="theme-color" content="#000000">
+p, span {
+    font-family: inherit;
+    font-size: 10px;
+    line-height: 12px;
+    letter-spacing: -0.0025em;
+    font-weight: 700;
+    text-transform: none;
+}
+@media (max-width: 480px) {
+    p, span { font-size: 9px; line-height: 11px; }
+}
 
-    <!-- 设置显示为全屏，避免显示浏览器界面 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+a { color: inherit; text-decoration: none; }
+a, button { display: inherit; text-align: inherit; cursor: pointer; pointer-events: auto; }
+a, button, input, textarea { margin: 0; padding: 0; color: inherit; }
+button, input, textarea { font: inherit; background-color: transparent; outline: none; border: none; }
+::selection { background: var(--bg-soft); }
 
-    <title>fotomemo</title>
-    <meta name="robots" content="max-image-preview:large">
+.tabular { font-feature-settings: "tnum" on, "lnum" on; }
 
+.heading { font-size: 28px; line-height: 28px; letter-spacing: -0.01em; font-weight: 700; }
+@media (max-width: 480px) { .heading { font-size: 20px; line-height: 20px; } }
 
+.body { font-size: 10px; line-height: 12px; letter-spacing: -0.0025em; font-weight: 700; }
+@media (max-width: 480px) { .body { font-size: 9px; line-height: 11px; } }
 
+.bodyUppercase { font-size: 10px; line-height: 12px; letter-spacing: -0.0025em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; }
+@media (max-width: 480px) { .bodyUppercase { font-size: 9px; line-height: 11px; } }
 
+.caption { font-size: 9px; line-height: 11px; letter-spacing: -0.005em; font-weight: 700; }
+@media (max-width: 480px) { .caption { font-size: 8px; line-height: 11px; } }
 
+.captionUppercase { font-size: 9px; line-height: 11px; letter-spacing: -0.005em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; }
+@media (max-width: 480px) { .captionUppercase { font-size: 8px; line-height: 11px; } }
 
-    <!-- All in One SEO Pack 3.3.3 by Michael Torbert of Semper Fi Web Design[321,339] -->
-    <script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-17WWNESBQW&amp;cx=c&amp;_slc=1"></script><script async="" src="css/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-17WWNESBQW&amp;cx=c&amp;_slc=1"></script><script async="" src="css/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-17WWNESBQW&amp;cx=c&amp;_slc=1"></script><script async="" src="css/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-17WWNESBQW&amp;cx=c&amp;_slc=1"></script><script async="" src="css/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-17WWNESBQW&amp;cx=c&amp;_slc=1"></script><script async="" src="css/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-17WWNESBQW&amp;cx=c&amp;_slc=1"></script><script async="" src="css/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-17WWNESBQW&amp;cx=c&amp;_slc=1"></script><script async="" src="css/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-17WWNESBQW&amp;cx=c&amp;_slc=1"></script><script async="" src="css/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-17WWNESBQW&amp;cx=c&amp;_slc=1"></script><script async="" src="css/analytics.js"></script><script type="text/javascript" async="" src="css/js.js"></script><script async="" src="css/analytics.js"></script><script type="text/javascript" async="" src="css/js.js"></script><script async="" src="css/analytics.js"></script><script type="text/javascript" async="" src="css/js.js"></script><script async="" src="css/analytics.js"></script><script type="text/javascript" async="" src="css/js.js"></script><script async="" src="css/analytics.js"></script><script type="text/javascript" async="" src="css/js.js"></script><script async="" src="css/analytics.js"></script><script type="application/ld+json" class="aioseop-schema">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://fotomemo.cn/#organization","url":"https://fotomemo.cn/","name":"fotomemo","sameAs":[]},{"@type":"WebSite","@id":"https://fotomemo.cn/#website","url":"https://fotomemo.cn/","name":"fotomemo","publisher":{"@id":"https://fotomemo.cn/#organization"},"potentialAction":{"@type":"SearchAction","target":"https://fotomemo.cn/?s={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"WebPage","@id":"https://fotomemo.cn/#webpage","url":"https://fotomemo.cn/","inLanguage":"en-US","name":"Work","isPartOf":{"@id":"https://fotomemo.cn/#website"},"datePublished":"2023-5-08T12:21:46+00:00","dateModified":"2023-05-08T12:24:04+00:00","about":{"@id":"https://fotomemo.cn/#organization"}}]}</script>
-    <link rel="canonical" href="https://fotomemo.cn/">
-    <!-- All in One SEO Pack -->
-    <link rel="dns-prefetch" href="//s.w.org">
-    <link rel="alternate" type="application/rss+xml" title="Angela Lane » Feed" href="https://fotomemo.cn/">
-    <link rel="alternate" type="application/rss+xml" title="Angela Lane » Comments Feed" href="https://fotomemo.cn/">
-    <script type="text/javascript">
-        window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"css\/wp-emoji-release.min.js"}};
-        !function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
-    </script><script src="css/wp-emoji-release.min.js" type="text/javascript" defer=""></script><script src="css/wp-emoji-release.min.js" type="text/javascript" defer=""></script><script src="css/wp-emoji-release.min.js" type="text/javascript" defer=""></script><script src="css/wp-emoji-release.min.js" type="text/javascript" defer=""></script><script src="css/wp-emoji-release.min.js" type="text/javascript" defer=""></script><script src="css/wp-emoji-release.min.js" type="text/javascript" defer=""></script><script src="css/wp-emoji-release.min.js" type="text/javascript" defer=""></script><script src="css/wp-emoji-release.min.js" type="text/javascript" defer=""></script><script src="css/wp-emoji-release.min.js" type="text/javascript" defer=""></script><script src="css/wp-emoji-release.min.js" type="text/javascript" defer=""></script><script src="css/wp-emoji-release.min.js" type="text/javascript" defer=""></script><script src="css/wp-emoji-release.min.js" type="text/javascript" defer=""></script><script src="css/wp-emoji-release.min.js" type="text/javascript" defer=""></script><script src="css/wp-emoji-release.min.js" type="text/javascript" defer=""></script>
-    <style type="text/css">
-        img.wp-smiley,
-        img.emoji {
-            display: inline !important;
-            border: none !important;
-            box-shadow: none !important;
-            height: 1em !important;
-            width: 1em !important;
-            margin: 0 .07em !important;
-            vertical-align: -0.1em !important;
-            background: none !important;
-            padding: 0 !important;
-        }
-    </style>
-    <link rel="stylesheet" id="wp-block-library-css" href="css/style.min.css" type="text/css" media="all">
-    <link rel="stylesheet" id="hamilton-fonts-css" href="css/css.css" type="text/css" media="all">
-    <link rel="stylesheet" id="hamilton-style-css" href="css/style.css" type="text/css" media="all">
-    <script type="text/javascript" src="css/jquery.min.js" id="jquery-core-js"></script>
-    <script type="text/javascript" src="css/jquery-migrate.min.js" id="jquery-migrate-js"></script>
-    <script type="text/javascript" id="gadwp-tracking-analytics-events-js-extra">
-        /* <![CDATA[ */
-        var gadwpUAEventsData = {"options":{"event_tracking":"1","event_downloads":"zip|ra*|mp*|avi|flv|mpeg|pdf|doc*|ppt*|xls*|jp*|png|gif|tiff|bmp|txt","event_bouncerate":0,"aff_tracking":0,"event_affiliates":"\/out\/","hash_tracking":0,"root_domain":"fotomemo.cn","event_timeout":100,"event_precision":0,"event_formsubmit":0,"ga_pagescrolldepth_tracking":0,"ga_with_gtag":0}};
-        /* ]]> */
-    </script>
-    <script type="text/javascript" src="css/tracking-analytics-events.js" id="gadwp-tracking-analytics-events-js"></script>
-    <link rel="https://api.w.org/" href="css/"><link rel="alternate" type="application/json" href="css"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="css/xmlrpc.php">
-    <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://fotomemo.cn/css/wlwmanifest.xml">
-    <meta name="generator" content="WordPress 5.8.2">
-    <link rel="shortlink" href="https://fotomemo.cn/">
-    <link rel="alternate" type="application/json+oembed" href="css/embed">
-    <link rel="alternate" type="text/xml+oembed" href="css/embed&amp;format=xml">
-    <script>jQuery( 'html' ).removeClass( 'no-js' ).addClass( 'js' );</script>
+.button {
+    font-size: 10px;
+    line-height: 12px;
+    letter-spacing: -0.0025em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    color: var(--ink);
+    transition: color 0.15s var(--ease);
+    cursor: pointer;
+    user-select: none;
+    background: transparent;
+    border: none;
+}
+@media (max-width: 480px) { .button { font-size: 9px; line-height: 11px; } }
+@media (hover: hover) { .button:hover { color: var(--ink-soft); } }
 
-    <meta name="msapplication-TileImage" content="css/close.svg">
+.buttonSecondary {
+    font-size: 10px;
+    line-height: 12px;
+    letter-spacing: -0.0025em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    color: var(--ink);
+    transition: color 0.15s var(--ease);
+    cursor: pointer;
+    user-select: none;
+    background: transparent;
+    border: none;
+}
+@media (max-width: 480px) { .buttonSecondary { font-size: 9px; line-height: 11px; } }
+@media (hover: hover) { .buttonSecondary:hover { color: var(--ink-faint); } }
 
-    <!-- BEGIN ExactMetrics v5.3.9 Universal Analytics - https://exactmetrics.com/ -->
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.
-        ga('create', 'UA-53444674-1', 'auto');
-            ga('send', 'pageview');})
-    </script>
-    <!-- END ExactMetrics Universal Analytics -->
+/* link 高亮 hover 样式（原站 Link_wrapper__BxkC_） */
+.link {
+    position: relative;
+    left: -4px;
+    padding: 2px 4px 1px;
+    margin-top: -2px;
+    margin-bottom: -1px;
+    display: inline-flex;
+    background-color: transparent;
+    border-radius: 1px;
+    white-space: pre-line;
+    transition: background-color 0.15s var(--ease);
+}
+@media (hover: hover) { .link:hover { background-color: var(--bg-soft); } }
+.link .bullet { margin-right: 1ch; }
+.link .arrow {
+    margin-left: 4px;
+    margin-right: -2px;
+    display: inline-flex;
+}
 
+/* Page 容器 */
+.page {
+    position: relative;
+    z-index: 0;
+    min-height: 100lvh;
+    width: calc(100 * var(--vw));
+    display: flex;
+    flex-direction: column;
+    animation: pageFade 1.1s var(--ease) both;
+}
+
+@keyframes pageFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* =========================================================
+   Header：position:absolute 顶栏（3列栅格布局）
+   + position:fixed 底部导航
+   ========================================================= */
+.header-wrapper { display: contents; }
+
+.header-absolute {
+    position: absolute;
+    z-index: 2;
+    padding: var(--spacing8) var(--margin) 0 var(--margin);
+    display: grid;
+    grid-template-columns:
+        calc(3*var(--column) + 2*var(--gutter))
+        calc(15*var(--column) + 14*var(--gutter))
+        calc(6*var(--column) + 5*var(--gutter));
+    column-gap: var(--gutter);
+    align-items: start;
+    justify-items: start;
+    mix-blend-mode: normal;
+    color: var(--ink);
+}
+@media (max-width: 900px) {
+    .header-absolute {
+        position: relative;
+        padding-bottom: var(--spacing120);
+        grid-template-columns:
+            calc(6*var(--column) + 5*var(--gutter))
+            calc(6*var(--column) + 5*var(--gutter));
+        mix-blend-mode: normal;
+        color: var(--ink);
+    }
+    .header-absolute .header-tagline { display: none; }
+}
+.header-absolute h1 { margin: 0; mix-blend-mode: normal; color: var(--ink); }
+
+.header-enquiries { display: flex; flex-direction: column; gap: 4px; }
+.header-tagline { align-self: start; justify-self: start; }
+.header-tagline p { opacity: 0.85; }
+
+.header-fixed {
+    position: fixed;
+    z-index: 4;
+    top: var(--spacing8);
+    left: calc(var(--margin) + 12*var(--column) + 12*var(--gutter));
+}
+@media (max-width: 900px) {
+    .header-fixed {
+        top: auto;
+        left: 0;
+        bottom: 0;
+    }
+}
+.header-fixed .header-navigation {
+    display: flex;
+    gap: 0;
+}
+@media (max-width: 900px) {
+    .header-fixed .header-navigation {
+        height: var(--spacing40);
+        width: calc(100 * var(--vw));
+        justify-content: center;
+        align-items: center;
+        background-color: var(--bg);
+        border-top: 1px solid var(--ink);
+    }
+}
+.header-fixed .header-navigation .link {
+    padding: 2px 4px 1px;
+    margin: 0;
+    left: 0;
+}
+
+/* =========================================================
+   HomePage Wrapper + Overview/Index 切换
+   ========================================================= */
+.home-wrapper {
+    position: relative;
+    padding-top: var(--spacing120);
+}
+@media (max-width: 900px) {
+    .home-wrapper { padding-top: 0; }
+}
+
+.home-navigation {
+    position: sticky;
+    z-index: 2;
+    top: 0;
+    padding: var(--spacing8) var(--margin) var(--spacing12);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bg);
+}
+.home-views { display: flex; align-items: center; }
+.home-views .view-btn.button.is-active { color: var(--ink-faint); }
+.home-views .view-divider {
+    position: relative;
+    top: -2px;
+    left: -4px;
+    padding: 2px 4px 1px;
+}
+.home-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+/* 暗黑切换按钮：放在 Index 栏右侧 */
+.dark-toggle {
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #000;
+    border: 1px solid #000;
+    cursor: pointer;
+    transition: background 0.35s var(--ease), border-color 0.35s var(--ease), transform 0.25s var(--ease), box-shadow 0.4s;
+}
+
+/* =========================================================
+   ProjectsOverview：横向8列卡片（每项目=1行×8卡片）
+   卡片1：项目文本信息；卡片2-8：图片缩略图。
+   卡片宽度：3*--column + 3*--gutter（即8张一排=24列）
+   ========================================================= */
+.projects-overview {
+    margin: 0 calc(var(--margin)/2);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-top: 1px solid var(--line-strong);
+    /* 去掉外层多余的底部长线（那条就是你说「多了」的蓝箭头指的线）
+       改由每排末尾的 overview-row-line 画一条 24 列全宽横线，
+       最后一排（哪怕不满 8 张）也画一条，这样所有横线长度完全一样，
+       跟上面 border-top 一样长、且不会多一条外框线 */
+    align-content: flex-start;
+    position: relative;
+    /* 最后一排横线后，到下方 footer 的距离保留给用户调的 --spacing120 */
+    padding-bottom: var(--spacing120);
+}
+
+/* 每排末尾画一条完整横跨 24 列的横线：
+   - 位置：在该排最后一张 overview-card 后面
+   - 用法：在 HTML 每 8 张卡后放 <div class="overview-row-line"></div>
+*/
+.projects-overview .overview-row-line {
+    flex-basis: 100%;
+    height: 0;
+    border: none;
+    border-top: 1px solid var(--line-strong);
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.overview-card {
+    width: calc(3*var(--column) + 3*var(--gutter));
+    padding: var(--spacing8) calc(var(--gutter)/2);
+    /* 单张卡不单独画 border-bottom（否则不满 8 张的排会出现断一截的短线，
+       就是你截图里蓝圈圈的那条"短"）。
+       改由 .overview-row-line 在每个排的末尾统一画 24 列全宽横线。 */
+    height: auto;
+    min-height: calc((3*var(--column) + 2*var(--gutter))*1.2 + var(--spacing16) + var(--spacing8)*2);
+    flex-shrink: 0;
+}
+@media (max-width: 480px) {
+    .overview-card {
+        width: calc(4*var(--column) + 4*var(--gutter));
+        height: auto;
+        min-height: 0;
+    }
+}
+.overview-card:last-child { flex-grow: 0; }
+
+/* 卡片 1：项目文本信息 */
+.project-info {
+    width: 100%;
+    max-width: calc(3*var(--column) + 2*var(--gutter));
+    min-height: calc((3*var(--column) + 2*var(--gutter))*1.2);
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+@media (max-width: 480px) {
+    .project-info {
+        max-width: calc(4*var(--column) + 3*var(--gutter));
+        min-height: 0;
+    }
+}
+.project-info .idx { margin-bottom: var(--spacing4); }
+.project-info h3 {
+    margin: 0 0 8px;
+    font-size: 10px;
+    line-height: 12px;
+    letter-spacing: 0;
+    text-transform: none;
+    font-weight: 700;
+}
+.project-info .categories {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2px;
+    gap: 1px;
+}
+.project-info .info-block {
+    position: relative;
+    margin-top: auto;
+}
+.project-info .solutions {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    opacity: 1;
+    transition: opacity 0.3s var(--ease);
+}
+.project-info .view-project {
+    position: absolute;
+    bottom: 0; left: 0;
+    opacity: 0;
+    transition: opacity 0.3s var(--ease);
+}
+@media (hover: hover) {
+    .project-info:hover .solutions { opacity: 0; }
+    .project-info:hover .view-project { opacity: 1; }
+}
+
+/* 卡片 2-8：媒体缩略图 —— 去掉高度束缚，图片按原比例显示 */
+.project-media {
+    position: relative;
+    width: 100%;
+    max-width: calc(3*var(--column) + 2*var(--gutter));
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+@media (max-width: 480px) {
+    .project-media { max-width: calc(4*var(--column) + 3*var(--gutter)); }
+}
+.project-media .media-index { margin-bottom: var(--spacing4); }
+.project-media .media-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+.project-media .media-label {
+    position: relative;
+    top: 0;
+    z-index: 1;
+    opacity: 1;
+    margin-bottom: 4px;
+    transition: opacity 0.3s var(--ease);
+}
+.project-media .media-item,
+.project-media .media-item .media-img {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+.project-media .media-img img {
+    object-position: center;
+    /* 按原图比例：不裁剪 */
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+    display: block;
+    background-color: transparent;
+    transition: opacity 0.3s var(--ease);
+}
+/* 原站：媒体图片初始 opacity 0（只有 loader），hover/active 时 fade in；
+   我们简化用 opacity 1 作为默认，hover 时降亮；loader 占位保留 */
+.project-media .media-img .loader {
+    position: absolute;
+    inset: 0;
+    background-color: var(--bg-soft);
+    opacity: 0;
+}
+@media (hover: hover) {
+    .project-media:hover .media-label { opacity: 0.15; }
+    .project-media:hover .media-img img {
+        opacity: 0.88;
+        filter: brightness(0.92);
+    }
+}
+/* 悬停半黑透明遮罩（用户要求） */
+.project-media .media-img::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0);
+    transition: background 0.5s var(--ease);
+    pointer-events: none;
+    z-index: 2;
+}
+@media (hover: hover) {
+    .project-media:hover .media-img::after { background: rgba(0,0,0,0.45); }
+}
+
+/* =========================================================
+   INDEX 视图（ProjectIndexThumbnail，可展开）
+   头部：5列（编号/标题/服务清单/时间/View Project）
+   展开：横向滚动 8列 缩略图
+   ========================================================= */
+.projects-index {
+    margin: 0 var(--margin);
+    display: none;
+    flex-direction: column;
+    border-top: 1px solid var(--line-strong);
+    padding-bottom: var(--spacing120);
+}
+.home-view.is-index .projects-index { display: flex; }
+.home-view.is-index .projects-overview { display: none; }
+
+.index-card {
+    position: relative;
+    padding: var(--spacing8) 0;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--line-strong);
+    transition: background-color 0.3s var(--ease);
+    cursor: pointer;
+}
+@media (hover: hover) {
+    .index-card:hover { background-color: var(--bg-soft); }
+}
+
+.index-head {
+    display: grid;
+    grid-template-columns:
+        calc(3*var(--column) + 2*var(--gutter))
+        calc(5*var(--column) + 4*var(--gutter))
+        calc(4*var(--column) + 3*var(--gutter))
+        calc(6*var(--column) + 5*var(--gutter))
+        auto;
+    column-gap: var(--gutter);
+    min-height: 48px;
+    align-items: start;
+}
+@media (max-width: 900px) {
+    .index-head {
+        min-height: 44px;
+        column-gap: 0;
+        grid-template-columns: auto 1fr calc(6*var(--column) + 5*var(--gutter));
+    }
+    .index-head .idx { margin-right: var(--spacing8); }
+    .index-head .title { padding-right: var(--gutter); }
+    .index-head .services { display: none; }
+}
+.index-head .view-btn { justify-self: end; white-space: nowrap; }
+
+.index-services { display: flex; flex-direction: column; gap: 1px; }
+.index-timeline {
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+@media (max-width: 900px) {
+    .index-timeline { display: none; }
+}
+
+.index-media {
+    position: relative;
+    overflow: hidden;
+}
+.index-media .media-row {
+    padding-top: var(--spacing24);
+    position: relative;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc(2*var(--column) + var(--gutter));
+    column-gap: var(--gutter);
+    overflow-x: auto;
+}
+@media (max-width: 900px) {
+    .index-media .media-row {
+        grid-auto-columns: calc(3*var(--column) + 2*var(--gutter));
+    }
+}
+.index-media .media-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-bottom: var(--spacing16);
+}
+.index-media .media-item img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    background: transparent;
+    display: block;
+}
+.index-media .media-item::after { display: none; }
+
+/* =========================================================
+   Footer 严格按原站：内容区 3 列 + 底部 4 列 + 右下 Newsletter
+   ========================================================= */
+.footer-wrapper {
+    padding: var(--spacing40) var(--margin) var(--spacing16) var(--margin);
+    margin-top: auto;
+    display: grid;
+    row-gap: var(--spacing200);
+}
+@media (max-width: 900px) {
+    .footer-wrapper {
+        padding-top: 0;
+        padding-bottom: calc(var(--spacing64) + var(--spacing32));
+    }
+}
+.footer-content {
+    display: grid;
+    grid-template-columns:
+        calc(3*var(--column) + 2*var(--gutter))
+        calc(15*var(--column) + 14*var(--gutter));
+    column-gap: var(--gutter);
+    align-items: start;
+}
+@media (max-width: 900px) {
+    .footer-content {
+        margin-top: -1px;
+        padding-top: var(--spacing40);
+        grid-template-columns:
+            calc(4*var(--column) + 3*var(--gutter))
+            calc(8*var(--column) + 7*var(--gutter));
+        border-top: 1px solid var(--ink-soft);
+    }
+}
+.footer-content .footer-contact {
+    display: grid;
+    row-gap: var(--spacing16);
+}
+
+.footer-bottom {
+    display: grid;
+    grid-template-columns:
+        calc(3*var(--column) + 2*var(--gutter))
+        calc(6*var(--column) + 5*var(--gutter))
+        calc(9*var(--column) + 8*var(--gutter))
+        calc(6*var(--column) + 5*var(--gutter));
+    column-gap: var(--gutter);
+    align-items: end;
+    color: var(--ink-faint);
+    padding-top: var(--spacing64);
+    border-top: none;
+}
+@media (max-width: 900px) {
+    .footer-bottom {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: var(--spacing32);
+        border-top: none;
+    }
+    .footer-bottom .copyright { order: 1; }
+    .footer-bottom .footer-time { order: 0; white-space: pre-line; }
+    .footer-bottom .footer-tagline { order: 2; width: calc(8*var(--column) + 7*var(--gutter)); margin-top: var(--spacing8); }
+    .footer-bottom .footer-copy { order: 3; margin-top: var(--spacing8); }
+}
+.footer-bottom .footer-time { white-space: nowrap; }
+.footer-bottom .footer-tagline { justify-self: start; }
+
+/* =========================================================
+   暗黑模式（保留原站时钟/城市定位/暗黑切换的兼容层）
+   规则：.dark-mode 挂在 <html> 上就足够（body 继承）
+   ========================================================= */
+html.dark-mode,
+html.dark-mode body {
+    color: #fff;
+    background-color: #111;
+    --ink: #f1f1f1;
+    --ink-soft: #bdbdbd;
+    --ink-faint: #8a8a8a;
+    --line: #555;
+    --line-strong: #bdbdbd;
+    --bg: #111;
+    --bg-soft: #1e1e1e;
+    --bg-warm: #1e1e1e;
+}
+html.dark-mode .page,
+html.dark-mode .home-wrapper,
+html.dark-mode main,
+html.dark-mode .footer-wrapper,
+html.dark-mode .projects-overview,
+html.dark-mode .projects-index,
+html.dark-mode .overview-card,
+html.dark-mode .index-card,
+html.dark-mode .project-info,
+html.dark-mode .project-media {
+    background-color: var(--bg);
+}
+html.dark-mode ::selection { background: var(--bg-soft); color: #fff; }
+
+/* 暗黑模式下 Index 栏的切换按钮显示为白底 */
+html.dark-mode .dark-toggle {
+    background: #fff;
+    border-color: #fff;
+}
+@media (hover: hover) {
+    .dark-toggle:hover {
+        transform: scale(1.25);
+        box-shadow: 0 0 0 2px rgba(255, 220, 0, 0.35);
+    }
+    html.dark-mode .dark-toggle:hover {
+        box-shadow: 0 0 0 2px rgba(255, 220, 0, 0.45);
+    }
+}
+
+/* 保留main-image（原有脚本次调用到的元素） */
+#main-image { transition: opacity 1s ease; display: none; }
+
+/* reduced motion 兼容 */
+@media (prefers-reduced-motion: reduce) {
+    .page { animation: none; opacity: 1; }
+    .project-media .media-img img,
+    .project-media .media-label { transition: none; }
+    .project-media .media-img::after { transition: none; }
+}
+
+/* View 切换显示控制 */
+.home-view .projects-overview,
+.home-view .projects-index { display: none; }
+.home-view[data-v="overview"] .projects-overview { display: flex; }
+.home-view[data-v="index"] .projects-index { display: flex; }
+</style>
 </head>
+<body>
 
-<body class="home page-template-default page page-id-1087">
+<div class="page">
 
-
-<a class="skip-link button" href="#site-content"></a>
-
-<header class="section-inner site-header">
-
-
-    <h1 class="site-title"><a href=" " class="site-name"> </a></h1>
-
-
-    <div class="nav-toggle">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-    </div>
-
-    <div class="alt-nav-wrapper">
-        <!-- .alt-nav -->
-
-    </div><!-- .alt-nav-wrapper -->
-
-</header> <!-- header -->
-
-<nav class="site-nav">
-
-
-    <div class="section-inner menus group">
-        <ul id="menu-main-menu-1" class="menu">
-            <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-43 current_page_item menu-item">
-                <a href="https://fotomemo.cn/index.html" aria-current="page">Main page</a>
-            </li>
-            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-photograph">
-                <a href="#">Photoalbum</a>
-                <ul class="sub-menu">
-                    <li><a href="https://fotomemo.cn/photograph.html">photograph</a></li>
-
-                </ul>
-            </li>
-            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-tape-cover">
-                <a href="https://fotomemo.cn/Record.html">Record</a>
-
-            </li>
-            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-about">
-                <a href="https://fotomemo.cn/about.html">about</a>
-            </li>
-        </ul>
-    </div>
-
-    <footer class="site-footer section-inner align-right">
-
-        <a href="https://fotomemo.cn" class="site-name">
-            <img src="css/1.png" alt="Site Logo" width="15" height="15">
+<!-- ============ HEADER ============ -->
+<header class="header-wrapper">
+    <div class="header-absolute">
+        <a href="/">
+            <h1>fotomemo</h1>
         </a>
-    </footer>
-
-</nav>
-
-<main id="site-content">
-    <div class="section-inner post-1087 page type-page status-publish hentry missing-thumbnail">
-
-        <header class="page-header section-inner thin">
-
+        <div class="header-enquiries">
             <div>
+                <h3>Enquiries</h3>
+                <div><a class="link" href="mailto:fotomemoo@outlook.com"><span class="body">E.&nbsp;&nbsp;</span>fotomemoo@outlook.com</a></div>
+            </div>
+        </div>
+        <div class="header-tagline">
+            <p>A creative studio specialised in brand identity and creative direction.</p>
+        </div>
+    </div>
 
-                <h1 class="title">Work</h1>
+    <div class="header-fixed">
+        <nav class="header-navigation">
+            <div class="link"><a href="index.html"><span class="bodyUppercase">Work,</span></a></div>
+            <div class="link"><a href="/archive"><span class="bodyUppercase">Archive,</span></a></div>
+            <div class="link"><a href="/about"><span class="bodyUppercase">About</span></a></div>
+        </nav>
+    </div>
+</header>
+
+<!-- ============ MAIN ============ -->
+<main>
+<div class="home-wrapper">
+
+    <!-- 切换条 -->
+    <div class="home-navigation">
+        <div class="home-views">
+            <button class="button view-btn tabular is-active" data-v="overview">
+                <div class="link"><span class="bodyUppercase">Overview</span></div>
+            </button>
+            <div class="view-divider tabular">/</div>
+            <button class="button view-btn tabular" data-v="index">
+                <div class="link"><span class="bodyUppercase">Index</span></div>
+            </button>
+        </div>
+        <div class="home-right">
+            <div class="dark-toggle" id="darkToggle" role="button" aria-label="Toggle dark mode" title="Toggle theme"></div>
+        </div>
+    </div>
+
+    <!-- ============ Projects OVERVIEW（默认显示） ============ -->
+    <div class="home-view" data-v="overview">
+
+                        <section class="projects-overview">
+
+            <!-- ====== 01 Field Studies Flora ====== -->
+            <div class="overview-card">
+                <a class="project-info" href="#">
+                    <div class="idx tabular">01</div>
+                    <div><h3 class="tabular">Field Studies Flora</h3></div>
+                    <div class="categories">
+                        <div><span class="tabular">01.1&nbsp;&nbsp;</span><span>Branding</span></div>
+                        <div><span class="tabular">01.2&nbsp;&nbsp;</span><span>Printed Matter</span></div>
+                        <div><span class="tabular">01.3&nbsp;&nbsp;</span><span>Website</span></div>
+                    </div>
+                    <div class="info-block">
+                        <div class="solutions">
+                            <span class="tabular">2024 Onward</span>
+                            <span>Brand Identity</span>
+                            <span>Website</span>
+                            <span>Print Assets</span>
+                            <span>Digital Assets</span>
+                        </div>
+                        <div class="view-project"><span class="buttonSecondary">View Project</span></div>
+                    </div>
+                </a>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">01.1.1</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>Park corridor</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/741.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">01.2.2</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>Jian Gong Village</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/65.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">01.2.3</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>Construction Village Iron Gate</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/66.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">01.3.4</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>Port of Entry</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/68.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">01.1.5</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>The quilt by the port</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/70.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">01.3.6</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>Fisherman's Port</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/69.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">01.3.7</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>Park corridor 2</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/742.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
             </div>
 
-        </header><!-- .page-header -->
+            <div class="overview-row-line"></div>
 
-        <div class="entry-content section-inner thin">
-            <figure class="wp-block-image size-full">
-                <img loading="lazy" width="4250" height="2139" src="picture/010.png" alt="" class="wp-image-1423" srcset="" sizes="(max-width: 1500px) 100vw, 1500px">
-            </figure>
+            <!-- ====== 02 Simone Bodmer-Turner ====== -->
+            <div class="overview-card">
+                <a class="project-info" href="#">
+                    <div class="idx tabular">02</div>
+                    <div><h3 class="tabular">Simone Bodmer-Turner</h3></div>
+                    <div class="categories">
+                        <div><span class="tabular">02.1&nbsp;&nbsp;</span><span>Branding</span></div>
+                        <div><span class="tabular">02.2&nbsp;&nbsp;</span><span>Printed Matter</span></div>
+                        <div><span class="tabular">02.3&nbsp;&nbsp;</span><span>Website</span></div>
+                    </div>
+                    <div class="info-block">
+                        <div class="solutions">
+                            <span class="tabular">2025 Onward</span>
+                            <span>Brand Identity</span>
+                            <span>Print Assets</span>
+                            <span>Digital Assets</span>
+                            <span>Website</span>
+                            <span>Website Development</span>
+                        </div>
+                        <div class="view-project"><span class="buttonSecondary">View Project</span></div>
+                    </div>
+                </a>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">02.1.1</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>The corridor 3 of the park features mosaic tile art with a distinctive modern style</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/743.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">02.2.2</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>church</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/15.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">02.3.3</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>ridge</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/14.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">02.1.4</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>fog</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/13.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">02.1.5</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>The Great Hall of the People</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/12.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">02.3.6</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>Daisy</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/67.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">02.3.7</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>Passage</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/64.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="overview-row-line"></div>
+
+            <!-- ====== 03 Ne Geurra ====== -->
+            <div class="overview-card">
+                <a class="project-info" href="#">
+                    <div class="idx tabular">03</div>
+                    <div><h3 class="tabular">Ne Geurra</h3></div>
+                    <div class="categories">
+                        <div><span class="tabular">03.1&nbsp;&nbsp;</span><span>Branding</span></div>
+                        <div><span class="tabular">03.2&nbsp;&nbsp;</span><span>Art Direction</span></div>
+                        <div><span class="tabular">03.3&nbsp;&nbsp;</span><span>Printed Matter</span></div>
+                        <div><span class="tabular">03.4&nbsp;&nbsp;</span><span>Website</span></div>
+                    </div>
+                    <div class="info-block">
+                        <div class="solutions">
+                            <span class="tabular">2024 Onward</span>
+                            <span>Brand Identity</span>
+                            <span>Website Design</span>
+                            <span>Website Development</span>
+                            <span>Digital Assets</span>
+                            <span>Print Assets</span>
+                            <span>Signage</span>
+                        </div>
+                        <div class="view-project"><span class="buttonSecondary">View Project</span></div>
+                    </div>
+                </a>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">03.1.1</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>Old building</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/11.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">03.2.2</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>The entrance of the stairs</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/10.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">03.3.3</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>Tiananmen Square</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/9.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">03.3.4</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>Munan Province</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/63.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">03.2.5</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>Bao di</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/62.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">03.4.6</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>798</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/61.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">03.2.7</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>Ruins</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/60.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="overview-row-line"></div>
+
+            <!-- ====== 04 Danny Kaplan Studio ====== -->
+            <div class="overview-card">
+                <a class="project-info" href="#">
+                    <div class="idx tabular">04</div>
+                    <div><h3 class="tabular">Danny Kaplan Studio</h3></div>
+                    <div class="categories">
+                        <div><span class="tabular">04.1&nbsp;&nbsp;</span><span>Art Direction</span></div>
+                        <div><span class="tabular">04.2&nbsp;&nbsp;</span><span>Website</span></div>
+                    </div>
+                    <div class="info-block">
+                        <div class="solutions">
+                            <span class="tabular">2022 Onward</span>
+                            <span>E-Commerce Design</span>
+                            <span>E-Commerce Development</span>
+                            <span>Digital Assets</span>
+                            <span>Print Assets</span>
+                        </div>
+                        <div class="view-project"><span class="buttonSecondary">View Project</span></div>
+                    </div>
+                </a>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">04.1.1</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>Anren Theatre</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/6.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">04.1.2</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>Corridor Angle</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/5.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">04.2.3</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>Courtyard with ancient wall</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/4.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">04.2.4</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>Old railway carriage</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/3.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">04.2.5</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>Zheduo Mountain 02</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/2.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">04.2.6</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>Mountain range</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/1.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">04.1.7</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>Dule Temple</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/58.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="overview-row-line"></div>
+
+            <!-- ====== 05 Handcrafted Modern ====== -->
+            <div class="overview-card">
+                <a class="project-info" href="#">
+                    <div class="idx tabular">05</div>
+                    <div><h3 class="tabular">Handcrafted Modern</h3></div>
+                    <div class="categories">
+                        <div><span class="tabular">05.1&nbsp;&nbsp;</span><span>Printed Matter</span></div>
+                        <div><span class="tabular">05.2&nbsp;&nbsp;</span><span>Art Direction</span></div>
+                        <div><span class="tabular">05.3&nbsp;&nbsp;</span><span>Branding</span></div>
+                        <div><span class="tabular">05.4&nbsp;&nbsp;</span><span>Website</span></div>
+                    </div>
+                    <div class="info-block">
+                        <div class="solutions">
+                            <span class="tabular">2025</span>
+                            <span>Brand Identity</span>
+                            <span>Website</span>
+                            <span>Art Direction</span>
+                            <span>Print Assets</span>
+                            <span>Digital Assets</span>
+                            <span>Website Development</span>
+                        </div>
+                        <div class="view-project"><span class="buttonSecondary">View Project</span></div>
+                    </div>
+                </a>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">05.1.1</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>Old house</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/36.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">05.2.2</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>kuāng</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/35.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">05.3.3</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>Water park</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/34.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">05.4.4</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>Angivare</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/33.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- ====== 06 F.Miller ====== -->
+            <div class="overview-card">
+                <a class="project-info" href="#">
+                    <div class="idx tabular">06</div>
+                    <div><h3 class="tabular">F.Miller</h3></div>
+                    <div class="categories">
+                        <div><span class="tabular">06.1&nbsp;&nbsp;</span><span>Branding</span></div>
+                        <div><span class="tabular">06.2&nbsp;&nbsp;</span><span>Packaging</span></div>
+                        <div><span class="tabular">06.3&nbsp;&nbsp;</span><span>Website</span></div>
+                    </div>
+                    <div class="info-block">
+                        <div class="solutions">
+                            <span class="tabular">2018 Onward</span>
+                            <span>Brand Identity</span>
+                            <span>Packaging</span>
+                            <span>Print Assets</span>
+                            <span>E-Commerce Design</span>
+                            <span>E-Commerce Development</span>
+                            <span>Digital Assets</span>
+                        </div>
+                        <div class="view-project"><span class="buttonSecondary">View Project</span></div>
+                    </div>
+                </a>
+            </div>
+            <div class="overview-card">
+                <div class="project-media">
+                    <div class="media-index tabular">06.1.1</div>
+                    <a class="media-container" href="#">
+                        <div class="media-label"><span>010</span></div>
+                        <div class="media-item"><div class="media-img"><img src="picture/010.jpg" alt=""><div class="loader"></div></div></div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="overview-row-line"></div>
+
+        </section>
+        <!-- ============ Projects INDEX ============ -->
+        <section class="projects-index">
+            <article class="index-card">
+                <div class="index-head">
+                    <div class="idx tabular">01</div>
+                    <div class="title"><a href="#"><h3 class="tabular">Field Studies Flora</h3></a></div>
+                    <div class="services index-services">
+                        <div><span class="tabular">01.1&nbsp;&nbsp;</span><span>Branding</span></div>
+                        <div><span class="tabular">01.2&nbsp;&nbsp;</span><span>Printed Matter</span></div>
+                        <div><span class="tabular">01.3&nbsp;&nbsp;</span><span>Website</span></div>
+                    </div>
+                    <div class="timeline index-timeline">
+                        <strong class="tabular">2024 Onward</strong>
+                        <span>Brand Identity</span>
+                        <span>Website</span>
+                        <span>Print Assets</span>
+                        <span>Digital Assets</span>
+                    </div>
+                    <div class="view-btn"><a class="buttonSecondary link" href="#"><span>View Project</span></a></div>
+                </div>
+                <div class="index-media">
+                    <div class="media-row">
+                        <div class="media-item"><span class="tabular caption">01.1.1</span><span class="caption">Park corridor</span><img src="picture/741.jpg" alt=""></div>
+                        <div class="media-item"><span class="tabular caption">01.2.2</span><span class="caption">Jian Gong Village</span><img src="picture/65.jpg" alt=""></div>
+                        <div class="media-item"><span class="tabular caption">01.2.3</span><span class="caption">Construction Village Iron Gate</span><img src="picture/66.jpg" alt=""></div>
+                        <div class="media-item"><span class="tabular caption">01.3.4</span><span class="caption">Port of Entry</span><img src="picture/68.jpg" alt=""></div>
+                        <div class="media-item"><span class="tabular caption">01.1.5</span><span class="caption">The quilt by the port</span><img src="picture/70.jpg" alt=""></div>
+                        <div class="media-item"><span class="tabular caption">01.3.6</span><span class="caption">Fisherman's Port</span><img src="picture/69.jpg" alt=""></div>
+                        <div class="media-item"><span class="tabular caption">01.3.7</span><span class="caption">Park corridor 2</span><img src="picture/742.jpg" alt=""></div>
+                    </div>
+                </div>
+            </article>
+            <article class="index-card">
+                <div class="index-head">
+                    <div class="idx tabular">02</div>
+                    <div class="title"><a href="#"><h3 class="tabular">Simone Bodmer-Turner</h3></a></div>
+                    <div class="services index-services">
+                        <div><span class="tabular">02.1&nbsp;&nbsp;</span><span>Branding</span></div>
+                        <div><span class="tabular">02.2&nbsp;&nbsp;</span><span>Printed Matter</span></div>
+                        <div><span class="tabular">02.3&nbsp;&nbsp;</span><span>Website</span></div>
+                    </div>
+                    <div class="timeline index-timeline">
+                        <strong class="tabular">2025 Onward</strong>
+                        <span>Brand Identity</span>
+                        <span>Print Assets</span>
+                        <span>Digital Assets</span>
+                        <span>Website</span>
+                        <span>Website Development</span>
+                    </div>
+                    <div class="view-btn"><a class="buttonSecondary link" href="#"><span>View Project</span></a></div>
+                </div>
+                <div class="index-media">
+                    <div class="media-row">
+                        <div class="media-item"><span class="tabular caption">02.1.1</span><span class="caption">The corridor 3 of the park features mosaic tile art with a distinctive modern style</span><img src="picture/743.jpg" alt=""></div>
+                        <div class="media-item"><span class="tabular caption">02.2.2</span><span class="caption">church</span><img src="picture/15.jpg" alt=""></div>
+                        <div class="media-item"><span class="tabular caption">02.3.3</span><span class="caption">ridge</span><img src="picture/14.jpg" alt=""></div>
+                        <div class="media-item"><span class="tabular caption">02.1.4</span><span class="caption">fog</span><img src="picture/13.jpg" alt=""></div>
+                        <div class="media-item"><span class="tabular caption">02.1.5</span><span class="caption">The Great Hall of the People</span><img src="picture/12.jpg" alt=""></div>
+                        <div class="media-item"><span class="tabular caption">02.3.6</span><span class="caption">Daisy</span><img src="picture/67.jpg" alt=""></div>
+                        <div class="media-item"><span class="tabular caption">02.3.7</span><span class="caption">Passage</span><img src="picture/64.jpg" alt=""></div>
+                    </div>
+                </div>
+            </article>
+            <article class="index-card">
+                <div class="index-head">
+                    <div class="idx tabular">03</div>
+                    <div class="title"><a href="#"><h3 class="tabular">Ne Geurra</h3></a></div>
+                    <div class="services index-services">
+                        <div><span class="tabular">03.1&nbsp;&nbsp;</span><span>Branding</span></div>
+                        <div><span class="tabular">03.2&nbsp;&nbsp;</span><span>Art Direction</span></div>
+                        <div><span class="tabular">03.3&nbsp;&nbsp;</span><span>Printed Matter</span></div>
+                        <div><span class="tabular">03.4&nbsp;&nbsp;</span><span>Website</span></div>
+                    </div>
+                    <div class="timeline index-timeline">
+                        <strong class="tabular">2024 Onward</strong>
+                        <span>Brand Identity</span>
+                        <span>Website Design</span>
+                        <span>Website Development</span>
+                        <span>Digital Assets</span>
+                        <span>Print Assets</span>
+                        <span>Signage</span>
+                    </div>
+                    <div class="view-btn"><a class="buttonSecondary link" href="#"><span>View Project</span></a></div>
+                </div>
+                <div class="index-media">
+                    <div class="media-row">
+                        <div class="media-item"><span class="tabular caption">03.1.1</span><span class="caption">Old building</span><img src="picture/11.jpg" alt=""></div>
+                        <div class="media-item"><span class="tabular caption">03.2.2</span><span class="caption">The entrance of the stairs</span><img src="picture/10.jpg" alt=""></div>
+                        <div class="media-item"><span class="tabular caption">03.3.3</span><span class="caption">Tiananmen Square</span><img src="picture/9.jpg" alt=""></div>
+                        <div class="media-item"><span class="tabular caption">03.3.4</span><span class="caption">Munan Province</span><img src="picture/63.jpg" alt=""></div>
+                        <div class="media-item"><span class="tabular caption">03.2.5</span><span class="caption">Bao di</span><img src="picture/62.jpg" alt=""></div>
+                        <div class="media-item"><span class="tabular caption">03.4.6</span><span class="caption">798</span><img src="picture/61.jpg" alt=""></div>
+                        <div class="media-item"><span class="tabular caption">03.2.7</span><span class="caption">Ruins</span><img src="picture/60.jpg" alt=""></div>
+                    </div>
+                </div>
+            </article>
+            <article class="index-card">
+                <div class="index-head">
+                    <div class="idx tabular">04</div>
+                    <div class="title"><a href="#"><h3 class="tabular">Danny Kaplan Studio</h3></a></div>
+                    <div class="services index-services">
+                        <div><span class="tabular">04.1&nbsp;&nbsp;</span><span>Art Direction</span></div>
+                        <div><span class="tabular">04.2&nbsp;&nbsp;</span><span>Website</span></div>
+                    </div>
+                    <div class="timeline index-timeline">
+                        <strong class="tabular">2022 Onward</strong>
+                        <span>E-Commerce Design</span>
+                        <span>E-Commerce Development</span>
+                        <span>Digital Assets</span>
+                        <span>Print Assets</span>
+                    </div>
+                    <div class="view-btn"><a class="buttonSecondary link" href="#"><span>View Project</span></a></div>
+                </div>
+                <div class="index-media">
+                    <div class="media-row">
+                        <div class="media-item"><span class="tabular caption">04.1.1</span><span class="caption">Anren Theatre</span><img src="picture/6.jpg" alt=""></div>
+                        <div class="media-item"><span class="tabular caption">04.1.2</span><span class="caption">Corridor Angle</span><img src="picture/5.jpg" alt=""></div>
+                        <div class="media-item"><span class="tabular caption">04.2.3</span><span class="caption">Courtyard with ancient wall</span><img src="picture/4.jpg" alt=""></div>
+                        <div class="media-item"><span class="tabular caption">04.2.4</span><span class="caption">Old railway carriage</span><img src="picture/3.jpg" alt=""></div>
+                        <div class="media-item"><span class="tabular caption">04.2.5</span><span class="caption">Zheduo Mountain 02</span><img src="picture/2.jpg" alt=""></div>
+                        <div class="media-item"><span class="tabular caption">04.2.6</span><span class="caption">Mountain range</span><img src="picture/1.jpg" alt=""></div>
+                        <div class="media-item"><span class="tabular caption">04.1.7</span><span class="caption">Dule Temple</span><img src="picture/58.jpg" alt=""></div>
+                    </div>
+                </div>
+            </article>
+            <article class="index-card">
+                <div class="index-head">
+                    <div class="idx tabular">05</div>
+                    <div class="title"><a href="#"><h3 class="tabular">Handcrafted Modern</h3></a></div>
+                    <div class="services index-services">
+                        <div><span class="tabular">05.1&nbsp;&nbsp;</span><span>Printed Matter</span></div>
+                        <div><span class="tabular">05.2&nbsp;&nbsp;</span><span>Art Direction</span></div>
+                        <div><span class="tabular">05.3&nbsp;&nbsp;</span><span>Branding</span></div>
+                        <div><span class="tabular">05.4&nbsp;&nbsp;</span><span>Website</span></div>
+                    </div>
+                    <div class="timeline index-timeline">
+                        <strong class="tabular">2025</strong>
+                        <span>Brand Identity</span>
+                        <span>Website</span>
+                        <span>Art Direction</span>
+                        <span>Print Assets</span>
+                        <span>Digital Assets</span>
+                        <span>Website Development</span>
+                    </div>
+                    <div class="view-btn"><a class="buttonSecondary link" href="#"><span>View Project</span></a></div>
+                </div>
+                <div class="index-media">
+                    <div class="media-row">
+                        <div class="media-item"><span class="tabular caption">05.1.1</span><span class="caption">Old house</span><img src="picture/36.jpg" alt=""></div>
+                        <div class="media-item"><span class="tabular caption">05.2.2</span><span class="caption">kuāng</span><img src="picture/35.jpg" alt=""></div>
+                        <div class="media-item"><span class="tabular caption">05.3.3</span><span class="caption">Water park</span><img src="picture/34.jpg" alt=""></div>
+                        <div class="media-item"><span class="tabular caption">05.4.4</span><span class="caption">Angivare</span><img src="picture/33.jpg" alt=""></div>
+                    </div>
+                </div>
+            </article>
+            <article class="index-card">
+                <div class="index-head">
+                    <div class="idx tabular">06</div>
+                    <div class="title"><a href="#"><h3 class="tabular">F.Miller</h3></a></div>
+                    <div class="services index-services">
+                        <div><span class="tabular">06.1&nbsp;&nbsp;</span><span>Branding</span></div>
+                        <div><span class="tabular">06.2&nbsp;&nbsp;</span><span>Packaging</span></div>
+                        <div><span class="tabular">06.3&nbsp;&nbsp;</span><span>Website</span></div>
+                    </div>
+                    <div class="timeline index-timeline">
+                        <strong class="tabular">2018 Onward</strong>
+                        <span>Brand Identity</span>
+                        <span>Packaging</span>
+                        <span>Print Assets</span>
+                        <span>E-Commerce Design</span>
+                        <span>E-Commerce Development</span>
+                        <span>Digital Assets</span>
+                    </div>
+                    <div class="view-btn"><a class="buttonSecondary link" href="#"><span>View Project</span></a></div>
+                </div>
+                <div class="index-media">
+                    <div class="media-row">
+                        <div class="media-item"><span class="tabular caption">06.1.1</span><span class="caption">010</span><img src="picture/010.jpg" alt=""></div>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+    </div>
+
+</div>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer-wrapper">
+    <div class="footer-bottom">
+        <div class="footer-time">
+            <div id="currentTime" class="tabular">--:--:--</div>
         </div>
-
-        </body></div> <!-- .post -->
-
-    </div></main>
-
-<footer class="site-footer section-inner">
-    <p id="currentTime"></p>
-    <p><span id="city-name"></span></p>
-
-    <script>
-        function updateTime() {
-            var now = new Date();
-            var hours = now.getHours();
-            var minutes = now.getMinutes();
-            var seconds = now.getSeconds();
-            var timeStr = hours + ":" + (minutes < 10? "0" : "") + minutes + ":" + (seconds < 10? "0" : "") + seconds;
-            document.getElementById("currentTime").textContent = timeStr;
-        }
-
-        function getCityName() {
-            fetch('https://get.geojs.io/v1/ip/geo.json')
-               .then(response => response.json())
-               .then(data => {
-                    var cityName = data.city;
-                    document.getElementById("city-name").textContent = cityName;
-                })
-               .catch(error => console.error(error));
-        }
-
-        updateTime();
-        setInterval(updateTime, 1000);
-        getCityName();
-    </script>
-    <style>
-        body {
-            background-color: #ffffff;
-            color: #000000;
-            transition: background-color 0.9s, color 0.9s;
-        }
-
-        .menu {
-            color: #000000;
-            transition: background-color 0.9s, color 0.9s;
-        }
-
-        .dark-mode {
-            background-color: #000000;
-            color: #ffffff;
-        }
-
-        .dark-mode .menu {
-            color: #ffffff;
-        }
-
-        .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: #000;
-            border: none;
-            cursor: pointer;
-            float: none;
-            position: absolute;
-        }
-
-        #main-image {
-            transition: opacity 1s ease;
-        }
-        .dark-mode .site-footer img {
-            filter: invert(10) brightness(10);
-        }
-        .section-inner.thin {max-width: 400px;}
-    </style>
-
-    <nav class="menu">
-    </nav>
-
-    <script>
-        function toggleDarkMode() {
-            let body = document.body;
-            let menu = document.querySelector('.menu');
-            let image = document.getElementById('main-image');
-
-            body.classList.toggle('dark-mode');
-            menu.classList.toggle('dark-mode');
-
-            if (body.classList.contains('dark-mode')) {
-                image.src = "picture/010.PNG";
-                image.style.opacity = 0;
-                setTimeout(() => {
-                    image.style.opacity = 1;
-                }, 10);
-            } else {
-                image.src = "picture/010.PNG";
-                image.style.opacity = 0;
-                setTimeout(() => {
-                    image.style.opacity = 1;
-                }, 10);
-            }
-        }
-
-        function autoToggleDarkMode() {
-            let body = document.body;
-            let menu = document.querySelector('.menu');
-            let image = document.getElementById('main-image');
-
-            let hour = new Date().getHours();
-            const isDayTime = hour >= 6 && hour < 18;
-
-            if (!isDayTime) {
-                body.classList.add('dark-mode');
-                menu.classList.add('dark-mode');
-                image.src = "picture/010.PNG";
-                image.style.opacity = 0;
-                setTimeout(() => {
-                    image.style.opacity = 1;
-                }, 10);
-            } else {
-                body.classList.remove('dark-mode');
-                menu.classList.remove('dark-mode');
-                image.src = "picture/010.PNG";
-                image.style.opacity = 0;
-                setTimeout(() => {
-                    image.style.opacity = 1;
-                }, 10);
-            }
-        }
-        window.onload = function() {
-            autoToggleDarkMode();
-        };
-
-        setInterval(autoToggleDarkMode, 3600000);
-    </script>
-
-    <footer class="site-footer section-inner align-right">
-        <p>Copyright © 2022 - 2026</p>
-        <p></p>
-        <a href="https://fotomemo.cn" class="site-name">
-            <img src="css/1.png" alt="Site Logo" width="15" height="15">
-        </a>
-    </footer>
-
-    <!-- Start of StatCounter Code -->
-    <script>
-        <!--
-        var sc_project=11044408;
-        var sc_security="3b70edad";
-        var sc_invisible=1;
-        var scJsHost = (("https:" == document.location.protocol) ?
-            "https://secure." : "http://www.");
-        //-->
-    </script>
-
-    <script type="text/javascript" src="css/counter.js" async=""></script>
-    <noscript><div class="statcounter"><a title="web analytics" href="https://statcounter.com/"><img class="statcounter" src="https://c.statcounter.com/11044408/0/3b70edad/1/" alt="web analytics" /></a></div></noscript>
-    <!-- End of StatCounter Code -->
-    <script type="text/javascript" src="css/imagesloaded.min.js" id="imagesloaded-js"></script>
-    <script type="text/javascript" src="css/masonry.min.js" id="masonry-js"></script>
-    <script type="text/javascript" src="css/global.js" id="hamilton_global-js"></script>
-    <script type="text/javascript" src="css/wp-embed.min.js" id="wp-embed-js"></script>
-
+        <div class="copyright">
+            <div><h3>Location</h3></div>
+            <div><span id="city-name">loading...</span></div>
+        </div>
+        <div class="footer-tagline">
+            <p>A creative studio specialised in brand identity and creative direction, based in Tamaki Makaurau.</p>
+        </div>
+        <div class="footer-copy tabular">&copy;&nbsp;2022-2026 fotomemo. All rights reserved.</div>
+    </div>
 </footer>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
+
+<script>
+(function(){
+    var wrap = document.querySelector('.home-view');
+    if (!wrap) return;
+    document.querySelectorAll('.view-btn').forEach(function(btn){
+        btn.addEventListener('click', function(){
+            var v = btn.getAttribute('data-v') || 'overview';
+            wrap.setAttribute('data-v', v);
+            document.querySelectorAll('.view-btn').forEach(function(b){
+                b.classList.toggle('is-active', b === btn);
+            });
+        });
+    });
+})();
+</script>
+
+<script>
+(function(){
+    function pad(n){ return n<10 ? '0'+n : ''+n; }
+    var tEl = document.getElementById('currentTime');
+    var KEY_OVERRIDE = 'theme_override'; // 1 表示用户手动切过
+    var KEY_DARK     = 'theme_dark';     // '1' = dark, '0' = light
+
+    function applyDark(turnOn){
+        var on = !!turnOn;
+        var root = document.documentElement;
+        if (root.classList.contains('dark-mode') !== on) {
+            if (on) root.classList.add('dark-mode');
+            else    root.classList.remove('dark-mode');
+        }
+        if (document.body) {
+            if (document.body.classList.contains('dark-mode') !== on) {
+                if (on) document.body.classList.add('dark-mode');
+                else    document.body.classList.remove('dark-mode');
+            }
+        }
+    }
+    function autoWantsDark(){
+        var d = new Date();
+        var h = d.getHours();
+        return (h >= 18 || h < 6);
+    }
+    function syncTheme(){
+        var override = localStorage.getItem(KEY_OVERRIDE) === '1';
+        var on;
+        if (override) {
+            on = localStorage.getItem(KEY_DARK) === '1';
+        } else {
+            on = autoWantsDark();
+        }
+        applyDark(on);
+    }
+    function tick(){
+        var d = new Date();
+        if (tEl) tEl.textContent = pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds());
+        syncTheme();
+    }
+    // 初始化立即同步，避免页面首帧白→黑闪烁
+    try { syncTheme(); } catch(e) {}
+    tick();
+    setInterval(tick, 1000);
+
+    // 用户手动切换：保存覆盖状态
+    var tog = document.getElementById('darkToggle');
+    if (tog) {
+        var handler = function(ev){
+            ev && ev.preventDefault && ev.preventDefault();
+            var isDarkNow = document.documentElement.classList.contains('dark-mode');
+            var next = !isDarkNow;
+            applyDark(next);
+            try {
+                localStorage.setItem(KEY_OVERRIDE, '1');
+                localStorage.setItem(KEY_DARK, next ? '1' : '0');
+            } catch(e) {}
+        };
+        tog.addEventListener('click', handler);
+        tog.addEventListener('keydown', function(ev){
+            if (ev.key === 'Enter' || ev.key === ' ') handler(ev);
+        });
+    }
+})();
+</script>
+
+<script>
+(function(){
+    var el = document.getElementById('city-name');
+    if (el) el.textContent = 'Tamaki Makaurau - Auckland, NZ';
+})();
+</script>
+
 </body>
 </html>
 

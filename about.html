@@ -1,0 +1,672 @@
+<html lang="en" class="dark-mode"><head>
+<meta charset="UTF-8">
+<title>About — fotomemo</title>
+<meta name="description" content="fotomemo is a creative studio specialised in brand identity design, print, packaging, website design and creative direction.">
+<meta name="viewport" content="initial-scale=1.0, width=device-width">
+<link rel="icon" type="image/png" href="css/1.png">
+
+<style>
+
+:root {
+    --vw: 1vw;
+    --scrollbar: 0px;
+    --spacing4: 4px;
+    --spacing6: 6px;
+    --spacing8: 8px;
+    --spacing12: 12px;
+    --spacing16: 16px;
+    --spacing24: 24px;
+    --spacing32: 32px;
+    --spacing40: 40px;
+    --spacing64: 64px;
+    --spacing80: 80px;
+    --spacing120: 120px;
+    --spacing200: 200px;
+    --numberOfColumns: 24;
+    --margin: 16px;
+    --gutter: 16px;
+    --column: calc(
+        (1 / var(--numberOfColumns)) *
+        ((100 * var(--vw)) - (var(--margin) * 2) - ((var(--numberOfColumns) - 1) * (var(--gutter))))
+    );
+    --ink: #434343;
+    --ink-soft: #707070;
+    --ink-faint: #b4b1b1;
+    --line: #b4b1b1;
+    --line-strong: #707070;
+    --bg: #fff;
+    --bg-soft: #f0f0f0;
+    --bg-warm: #f0f0f0;
+    --ease: cubic-bezier(0.33, 1, 0.68, 1);
+    --ease-soft: cubic-bezier(0.95, 0, 0.3, 1);
+}
+@media (max-width: 900px) {
+    :root {
+        --spacing80: 64px;
+        --spacing120: 80px;
+        --spacing200: 120px;
+        --numberOfColumns: 12;
+    }
+}
+@media (max-width: 480px) {
+    :root {
+        --spacing16: 8px;
+        --spacing24: 16px;
+        --spacing32: 24px;
+        --spacing40: 32px;
+        --spacing64: 40px;
+        --spacing80: 64px;
+        --spacing120: 80px;
+        --spacing200: 120px;
+        --numberOfColumns: 12;
+    }
+}
+
+html {
+    box-sizing: border-box;
+    text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: none;
+    -webkit-font-smoothing: antialiased;
+    color: var(--ink);
+    background-color: var(--bg);
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    line-height: 12px;
+    letter-spacing: -0.0025em;
+    font-weight: 700;
+    text-transform: none;
+}
+@media (max-width: 480px) {
+    html { font-size: 9px; line-height: 11px; }
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: inherit;
+    font-size: 10px;
+    line-height: 12px;
+    letter-spacing: 0.02em;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+@media (max-width: 480px) {
+    h1, h2, h3, h4, h5, h6 { font-size: 9px; line-height: 11px; }
+}
+
+p, span {
+    font-family: inherit;
+    font-size: 10px;
+    line-height: 12px;
+    letter-spacing: -0.0025em;
+    font-weight: 700;
+    text-transform: none;
+}
+@media (max-width: 480px) {
+    p, span { font-size: 9px; line-height: 11px; }
+}
+
+a { color: inherit; text-decoration: none; }
+a, button { display: inherit; text-align: inherit; cursor: pointer; pointer-events: auto; }
+a, button, input, textarea { margin: 0; padding: 0; color: inherit; }
+button, input, textarea { font: inherit; background-color: transparent; outline: none; border: none; }
+::selection { background: var(--bg-soft); }
+
+.tabular { font-feature-settings: "tnum" on, "lnum" on; }
+
+.body { font-size: 10px; line-height: 12px; letter-spacing: -0.0025em; font-weight: 700; }
+@media (max-width: 480px) { .body { font-size: 9px; line-height: 11px; } }
+
+.bodyUppercase { font-size: 10px; line-height: 12px; letter-spacing: -0.0025em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; }
+@media (max-width: 480px) { .bodyUppercase { font-size: 9px; line-height: 11px; } }
+
+.caption { font-size: 9px; line-height: 11px; letter-spacing: -0.005em; font-weight: 700; }
+@media (max-width: 480px) { .caption { font-size: 8px; line-height: 11px; } }
+
+.captionUppercase { font-size: 9px; line-height: 11px; letter-spacing: -0.005em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; }
+@media (max-width: 480px) { .captionUppercase { font-size: 8px; line-height: 11px; } }
+
+.button {
+    font-size: 10px;
+    line-height: 12px;
+    letter-spacing: -0.0025em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    color: var(--ink);
+    transition: color 0.15s var(--ease);
+    cursor: pointer;
+    user-select: none;
+    background: transparent;
+    border: none;
+}
+@media (max-width: 480px) { .button { font-size: 9px; line-height: 11px; } }
+@media (hover: hover) { .button:hover { color: var(--ink-soft); } }
+
+.buttonSecondary {
+    font-size: 10px;
+    line-height: 12px;
+    letter-spacing: -0.0025em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    color: var(--ink);
+    transition: color 0.15s var(--ease);
+    cursor: pointer;
+    user-select: none;
+    background: transparent;
+    border: none;
+}
+@media (max-width: 480px) { .buttonSecondary { font-size: 9px; line-height: 11px; } }
+@media (hover: hover) { .buttonSecondary:hover { color: var(--ink-faint); } }
+
+.link {
+    position: relative;
+    left: -4px;
+    padding: 2px 4px 1px;
+    margin-top: -2px;
+    margin-bottom: -1px;
+    display: inline-flex;
+    background-color: transparent;
+    border-radius: 1px;
+    white-space: pre-line;
+    transition: background-color 0.15s var(--ease);
+}
+@media (hover: hover) { .link:hover { background-color: var(--bg-soft); } }
+
+/* Page 容器 */
+.page {
+    position: relative;
+    z-index: 0;
+    min-height: 100lvh;
+    width: calc(100 * var(--vw));
+    display: flex;
+    flex-direction: column;
+    animation: pageFade 1.1s var(--ease) both;
+}
+
+@keyframes pageFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* =========================================================
+   Header：position:absolute 顶栏
+   + position:fixed 底部导航
+   ========================================================= */
+.header-wrapper { display: contents; }
+
+.header-absolute {
+    position: absolute;
+    z-index: 2;
+    padding: var(--spacing8) var(--margin) 0 var(--margin);
+    display: grid;
+    grid-template-columns:
+        calc(3*var(--column) + 2*var(--gutter))
+        calc(15*var(--column) + 14*var(--gutter))
+        calc(6*var(--column) + 5*var(--gutter));
+    column-gap: var(--gutter);
+    align-items: start;
+    justify-items: start;
+    mix-blend-mode: normal;
+    color: var(--ink);
+}
+@media (max-width: 900px) {
+    .header-absolute {
+        position: relative;
+        padding-bottom: var(--spacing120);
+        grid-template-columns:
+            calc(6*var(--column) + 5*var(--gutter))
+            calc(6*var(--column) + 5*var(--gutter));
+        mix-blend-mode: normal;
+        color: var(--ink);
+    }
+    .header-absolute .header-tagline { display: none; }
+}
+.header-absolute h1 { margin: 0; mix-blend-mode: normal; color: var(--ink); }
+
+.header-enquiries { display: flex; flex-direction: column; gap: 4px; }
+.header-tagline { align-self: start; justify-self: start; }
+.header-tagline p { opacity: 0.85; }
+
+.header-fixed {
+    position: fixed;
+    z-index: 4;
+    top: var(--spacing8);
+    left: calc(var(--margin) + 12*var(--column) + 12*var(--gutter));
+}
+@media (max-width: 900px) {
+    .header-fixed {
+        top: auto;
+        left: 0;
+        bottom: 0;
+    }
+}
+.header-fixed .header-navigation {
+    display: flex;
+    gap: 0;
+}
+@media (max-width: 900px) {
+    .header-fixed .header-navigation {
+        height: var(--spacing40);
+        width: calc(100 * var(--vw));
+        justify-content: center;
+        align-items: center;
+        background-color: var(--bg);
+        border-top: 1px solid var(--ink);
+    }
+}
+.header-fixed .header-navigation .link {
+    padding: 2px 4px 1px;
+    margin: 0;
+    left: 0;
+}
+
+/* =========================================================
+   About Page 主体布局
+   复刻 1of1studio.com/about 的布局结构
+   ========================================================= */
+.about-wrapper {
+    position: relative;
+    padding-top: var(--spacing120);
+    flex: 1;
+}
+@media (max-width: 900px) {
+    .about-wrapper { padding-top: 0; }
+}
+
+/* AboutSection Grid: 两列布局
+   左列窄（~3列），右列宽（~15列）
+   第一行：全宽图片
+   第二行：左列"ABOUT"标题，右列文字内容 */
+.about-section {
+    margin: 0 var(--margin);
+    display: grid;
+    grid-template-columns:
+        calc(3*var(--column) + 2*var(--gutter))
+        calc(15*var(--column) + 14*var(--gutter));
+    column-gap: var(--gutter);
+    row-gap: var(--spacing16);
+    align-items: start;
+}
+@media (max-width: 900px) {
+    .about-section {
+        grid-template-columns:
+            calc(4*var(--column) + 3*var(--gutter))
+            calc(8*var(--column) + 7*var(--gutter));
+    }
+}
+
+/* Hero 图片：跨两列 */
+.about-hero {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.about-hero img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    background-color: transparent;
+}
+
+/* 左列标题 */
+.about-label {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    align-self: start;
+    justify-self: start;
+}
+.about-label h2 {
+    font-size: 10px;
+    line-height: 12px;
+    letter-spacing: 0.02em;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+@media (max-width: 480px) {
+    .about-label h2 { font-size: 9px; line-height: 11px; }
+}
+
+/* 右列文字内容 */
+.about-content {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing16);
+}
+.about-content p {
+    font-size: 10px;
+    line-height: 12px;
+    letter-spacing: -0.0025em;
+    font-weight: 700;
+}
+@media (max-width: 480px) {
+    .about-content p { font-size: 9px; line-height: 11px; }
+}
+
+/* 服务列表区域 */
+.about-services {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing8);
+    margin-top: var(--spacing8);
+}
+.about-services h3 {
+    font-size: 10px;
+    line-height: 12px;
+    letter-spacing: 0.02em;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+@media (max-width: 480px) {
+    .about-services h3 { font-size: 9px; line-height: 11px; }
+}
+.about-services .service-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+.about-services .service-list span {
+    font-size: 10px;
+    line-height: 12px;
+    letter-spacing: -0.0025em;
+    font-weight: 700;
+}
+@media (max-width: 480px) {
+    .about-services .service-list span { font-size: 9px; line-height: 11px; }
+}
+
+/* 联系邮箱 */
+.about-contact-email {
+    margin-top: var(--spacing8);
+}
+.about-contact-email a {
+    font-size: 10px;
+    line-height: 12px;
+    letter-spacing: -0.0025em;
+    font-weight: 700;
+}
+@media (max-width: 480px) {
+    .about-contact-email a { font-size: 9px; line-height: 11px; }
+}
+
+/* 底部留白 */
+.about-bottom-spacer {
+    height: var(--spacing120);
+}
+@media (max-width: 900px) {
+    .about-bottom-spacer { height: var(--spacing80); }
+}
+
+/* =========================================================
+   Footer 严格按原站：内容区 3 列 + 底部 4 列
+   ========================================================= */
+.footer-wrapper {
+    padding: var(--spacing40) var(--margin) var(--spacing16) var(--margin);
+    margin-top: auto;
+    display: grid;
+    row-gap: var(--spacing200);
+}
+@media (max-width: 900px) {
+    .footer-wrapper {
+        padding-top: 0;
+        padding-bottom: calc(var(--spacing64) + var(--spacing32));
+    }
+}
+.footer-content {
+    display: grid;
+    grid-template-columns:
+        calc(3*var(--column) + 2*var(--gutter))
+        calc(15*var(--column) + 14*var(--gutter));
+    column-gap: var(--gutter);
+    align-items: start;
+}
+@media (max-width: 900px) {
+    .footer-content {
+        margin-top: -1px;
+        padding-top: var(--spacing40);
+        grid-template-columns:
+            calc(4*var(--column) + 3*var(--gutter))
+            calc(8*var(--column) + 7*var(--gutter));
+        border-top: 1px solid var(--ink-soft);
+    }
+}
+.footer-content .footer-contact {
+    display: grid;
+    row-gap: var(--spacing16);
+}
+
+.footer-bottom {
+    display: grid;
+    grid-template-columns:
+        calc(3*var(--column) + 2*var(--gutter))
+        calc(6*var(--column) + 5*var(--gutter))
+        calc(9*var(--column) + 8*var(--gutter))
+        calc(6*var(--column) + 5*var(--gutter));
+    column-gap: var(--gutter);
+    align-items: end;
+    color: var(--ink-faint);
+    padding-top: var(--spacing64);
+    border-top: none;
+}
+@media (max-width: 900px) {
+    .footer-bottom {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: var(--spacing32);
+        border-top: none;
+    }
+    .footer-bottom .copyright { order: 1; }
+    .footer-bottom .footer-time { order: 0; white-space: pre-line; }
+    .footer-bottom .footer-tagline { order: 2; width: calc(8*var(--column) + 7*var(--gutter)); margin-top: var(--spacing8); }
+    .footer-bottom .footer-copy { order: 3; margin-top: var(--spacing8); }
+}
+.footer-bottom .footer-time { white-space: nowrap; }
+.footer-bottom .footer-tagline { justify-self: start; }
+
+/* =========================================================
+   暗黑模式
+   ========================================================= */
+html.dark-mode,
+html.dark-mode body {
+    color: #fff;
+    background-color: #111;
+    --ink: #f1f1f1;
+    --ink-soft: #bdbdbd;
+    --ink-faint: #8a8a8a;
+    --line: #555;
+    --line-strong: #bdbdbd;
+    --bg: #111;
+    --bg-soft: #1e1e1e;
+    --bg-warm: #1e1e1e;
+}
+html.dark-mode .page,
+html.dark-mode .about-wrapper,
+html.dark-mode main,
+html.dark-mode .footer-wrapper,
+html.dark-mode .about-section,
+html.dark-mode .about-hero,
+html.dark-mode .about-content,
+html.dark-mode .about-services {
+    background-color: var(--bg);
+}
+html.dark-mode ::selection { background: var(--bg-soft); color: #fff; }
+
+@keyframes pageFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .page { animation: none; opacity: 1; }
+}
+</style>
+</head>
+<body class="dark-mode">
+
+<div class="page">
+
+<!-- ============ HEADER ============ -->
+<header class="header-wrapper">
+    <div class="header-absolute">
+        <a href="index.html">
+            <h1>fotomemo</h1>
+        </a>
+        <div class="header-enquiries">
+            <div>
+                <h3>Contact</h3>
+                <div><a class="link" href="mailto:fotomemoo@outlook.com"><span class="body">E.&nbsp;&nbsp;</span>fotomemoo@outlook.com</a></div>
+            </div>
+        </div>
+        <div class="header-tagline">
+            <p>I think I will continue to shoot and accumulate more works.</p>
+        </div>
+    </div>
+
+    <div class="header-fixed">
+        <nav class="header-navigation">
+            <div class="link"><a href="index.html"><span class="bodyUppercase">Work,</span></a></div>
+            <div class="link"><a href="project-binhai.html"><span class="bodyUppercase">Archive,</span></a></div>
+            <div class="link"><a href="about.html"><span class="bodyUppercase">About</span></a></div>
+        </nav>
+    </div>
+</header>
+
+<!-- ============ MAIN ============ -->
+<main>
+<div class="about-wrapper">
+
+    <!-- AboutSection: 复刻 1of1studio 布局 -->
+    <section class="about-section">
+
+        <!-- Row 1: 全宽 Hero 图片（跨两列） -->
+        <div class="about-hero">
+            
+        </div>
+
+        <!-- Row 2, Col 1: ABOUT 标题 -->
+        <div class="about-label">
+            <h2>About</h2>
+        </div>
+
+        <!-- Row 2, Col 2: 文字内容 + 服务列表 -->
+        <div class="about-content">
+
+            <p>fotomemo is a personal photography project that began as a quiet practice of observation and has grown into an ongoing visual archive. Rooted in the everyday, it documents the subtle textures of urban life — the interplay between architecture and nature, the traces of time on buildings, and the fleeting moments that often go unnoticed.</p>
+
+            <p>The work spans multiple cities across China, from the industrial landscapes of Tianjin's Binhai New District to the atmospheric streets of Chengdu, from Beijing's monumental spaces to the quiet corners of smaller towns. Each photograph is an attempt to capture something both specific and universal — a fragment of place that resonates beyond its immediate context.</p>
+
+            <p>This is not a commercial endeavor but a sustained commitment to looking carefully and documenting honestly. The approach is patient and cumulative: images are gathered over time, allowed to accumulate meaning through repetition and variation. There is no grand narrative imposed from above; instead, patterns emerge organically from the act of walking, observing, and returning.\p>
+
+            <p>The photographs exist in dialogue with each other — black and white studies alongside color documentation, architectural details next to human-scale observations. This sequencing creates rhythms and connections that extend beyond individual frames, building a larger sense of place and atmosphere.</p>
+
+            <p>fotomemo will continue to evolve as new places are explored and familiar ones reveal different facets. It is a living archive, open-ended and responsive to the world as it changes. Updates come irregularly but consistently, driven by curiosity rather than schedule.</p>
+
+            <p>All images are taken personally, without staging or intervention. The goal is not to transform reality but to attend to it — to find beauty in what already exists, to honor the ordinary, and to preserve moments that might otherwise disappear.</p>
+
+            <p>This project is an invitation to slow down and look more closely. To notice the way light falls on concrete, how vegetation reclaims abandoned structures, or how people navigate spaces designed for other purposes. It is about finding poetry in the mundane and dignity in decay.</p>
+
+            <p>The archive grows slowly but steadily. Each addition is deliberate, chosen not for novelty but for its contribution to an emerging whole. Over time, these fragments coalesce into something larger than any single image — a portrait of contemporary China seen through the lens of someone who cares deeply about seeing clearly.</p>
+
+            <p>Thank you for taking the time to look.</p>
+
+    </section>
+
+    <!-- 底部留白 -->
+    <div class="about-bottom-spacer"></div>
+
+</div>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer-wrapper">
+    <div class="footer-bottom">
+        <div class="footer-time">
+            <div id="currentTime" class="tabular">02:46:55</div>
+        </div>
+        <div class="copyright">
+            <div><h3> </h3></div>
+            <div><span id="city-name">fotomemo</span></div>
+        </div>
+        <div class="footer-tagline">
+            <p>The above pictures are all taken by individuals.</p>
+        </div>
+        <div class="footer-copy tabular">©&nbsp;2022-2026 fotomemo. All rights reserved.</div>
+    </div>
+</footer>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
+
+<script>
+(function(){
+    function pad(n){ return n<10 ? '0'+n : ''+n; }
+    var tEl = document.getElementById('currentTime');
+    var KEY_OVERRIDE = 'theme_override';
+    var KEY_DARK     = 'theme_dark';
+
+    function applyDark(turnOn){
+        var on = !!turnOn;
+        var root = document.documentElement;
+        if (root.classList.contains('dark-mode') !== on) {
+            if (on) root.classList.add('dark-mode');
+            else    root.classList.remove('dark-mode');
+        }
+        if (document.body) {
+            if (document.body.classList.contains('dark-mode') !== on) {
+                if (on) document.body.classList.add('dark-mode');
+                else    document.body.classList.remove('dark-mode');
+            }
+        }
+    }
+    function autoWantsDark(){
+        var d = new Date();
+        var h = d.getHours();
+        return (h >= 18 || h < 6);
+    }
+    function syncTheme(){
+        var override = localStorage.getItem(KEY_OVERRIDE) === '1';
+        var on;
+        if (override) {
+            on = localStorage.getItem(KEY_DARK) === '1';
+        } else {
+            on = autoWantsDark();
+        }
+        applyDark(on);
+    }
+    function tick(){
+        var d = new Date();
+        if (tEl) tEl.textContent = pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds());
+        syncTheme();
+    }
+    try { syncTheme(); } catch(e) {}
+    tick();
+    setInterval(tick, 1000);
+})();
+</script>
+
+<script>
+(function(){
+    var el = document.getElementById('city-name');
+    if (el) el.textContent = 'fotomemo';
+})();
+</script>
+
+
+</body></html>

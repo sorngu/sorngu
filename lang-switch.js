@@ -78,23 +78,14 @@
             '小区建筑带有鲜明的苏式审美元素和七八十年代的工业风格，多为多层砖混结构。外立面常用灰色或米色的预制板，阳台装着蓝色塑钢窗或铁栏杆。',
     
         /* about：正文段落 */
-        "fotomemo is a personal photography project that began as a quiet practice of observation and has grown into an ongoing visual archive. Rooted in the everyday, it documents the subtle textures of urban life — the interplay between architecture and nature, the traces of time on buildings, and the fleeting moments that often go unnoticed.":
-            'fotomemo 是一个个人摄影项目，始于一次安静的观察练习，如今已长成一座持续生长的视觉档案。它扎根于日常，记录城市生活中细腻的质地——建筑与自然的交织、时间留在建筑物上的痕迹，以及那些常被忽略的瞬间。',
-        "The work spans multiple cities across China, from the industrial landscapes of Tianjin's Binhai New District to the atmospheric streets of Chengdu, from Beijing's monumental spaces to the quiet corners of smaller towns. Each photograph is an attempt to capture something both specific and universal — a fragment of place that resonates beyond its immediate context.":
-            '作品的足迹遍布中国的多座城市：从天津滨海新区的工业景观，到成都氤氳的街头；从北京宏大的空间，到小城镇安静的角落。每一张照片都试图捕捉既具体又普遍的东西——一个地点的片段，却能在更远处引起回响。',
-        'This is not a commercial endeavor but a sustained commitment to looking carefully and documenting honestly. The approach is patient and cumulative: images are gathered over time, allowed to accumulate meaning through repetition and variation. There is no grand narrative imposed from above; instead, patterns emerge organically from the act of walking, observing, and returning.':
-            '这不是一次商业尝试，而是对认真观看与诚实记录的长期坚持。方法是耐心而累积式的：影像在时间里被收集，借由重复与变化慢慢积蓄意义。这里没有自上而下强加的宏大叙事，图景与韵律，自然地从行走、观看与重返中浮现。',
-        'The photographs exist in dialogue with each other — black and white studies alongside color documentation, architectural details next to human-scale observations. This sequencing creates rhythms and connections that extend beyond individual frames, building a larger sense of place and atmosphere.':
-            '照片之间彼此对话——黑白习作与彩色记录并置，建筑细节与人的尺度相互照应。这样的编排生成超越单幅画面的节奏与联系，构筑起更辽阔的现场感与氛围。',
-        'fotomemo will continue to evolve as new places are explored and familiar ones reveal different facets. It is a living archive, open-ended and responsive to the world as it changes. Updates come irregularly but consistently, driven by curiosity rather than schedule.':
-            'fotomemo 会继续演化：新的地方被探索，熟悉的地方显露出不同的侧面。它是一座活着的档案，开放、流动，回应着这个变化中的世界。更新不规律，却从未停止——驱动它的是好奇心，而不是日程表。',
-        'All images are taken personally, without staging or intervention. The goal is not to transform reality but to attend to it — to find beauty in what already exists, to honor the ordinary, and to preserve moments that might otherwise disappear.':
-            '所有影像均为亲自拍摄，不做摆拍，也不加干预。目的不是改造现实，而是注视现实——在已经存在的事物中发现美，向平凡致意，留存那些可能就此消失的瞬间。',
-        'This project is an invitation to slow down and look more closely. To notice the way light falls on concrete, how vegetation reclaims abandoned structures, or how people navigate spaces designed for other purposes. It is about finding poetry in the mundane and dignity in decay.':
-            '这个项目是一次邀请：邀请你慢下来，看得更仔细一些。看光如何落在混凝土上，看植物如何收回废弃的建筑，看人们如何在为他人设计的空间里行走。它关乎在平凡中寻找诗意，在衰败中看见尊严。',
-        'The archive grows slowly but steadily. Each addition is deliberate, chosen not for novelty but for its contribution to an emerging whole. Over time, these fragments coalesce into something larger than any single image — a portrait of contemporary China seen through the lens of someone who cares deeply about seeing clearly.':
-            '档案缓慢而稳定地生长。每一次新增都经过斟酌，不为猎奇，只为它对一个正在成形的整体的贡献。时间会让这些碎片汇聚成比任何单张照片都更大的东西——一幅当代中国的肖像，透过一个在意「看清」的人的镜头。',
-        'Thank you for taking the time to look.': '谢谢你，愿意花时间来看。'
+        'fotomemo is my personal photography project. I simply like taking pictures — the places I pass through, the moments that quietly touch me. This site is where I keep them all.':
+            'fotomemo 是我的个人摄影项目。我只是喜欢拍照——路过的地方、悄悄打动我的瞬间，这个网站是我把它们都收好的地方。',
+        'I love photography because it makes me slow down and really look. The light on a wall, a street corner about to disappear, a person lost in thought — once I press the shutter, they stay. These photographs are proof that I looked carefully, and that I lived.':
+            '我喜欢摄影，因为它让我慢下来，认真地去看。墙上的光、快要消失的街角、一个出神的人——按下快门，它们就留下来了。这些照片是我认真看过、认真活过的证据。',
+        'I made this website for two reasons. One is for myself: a place to store my photos and the memories attached to them, so nothing gets lost along the way. The other is the quiet hope that someone, somewhere, might see them — and pause, even for a moment.':
+            '我做这个网站有两个原因。一个是为我自己：存下照片，和照片里的记忆，不让它们在路上走丢。另一个，是小小的期盼——希望有人能看到它们，哪怕只是停留一会儿。',
+        'As long as I am still looking, and there are still moments worth keeping, I will continue. Thank you for taking the time to look.':
+            '只要我还在看，还有想留住的瞬间，我就会继续拍下去。谢谢你花时间来看。'
     };
 
     /* ---------- 工具 ---------- */

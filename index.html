@@ -382,35 +382,20 @@ html[lang="zh-CN"] [data-i18n] {
     flex-direction: row;
     flex-wrap: wrap;
     border-top: 1px solid var(--line-strong);
-    /* 去掉外层多余的底部长线（那条就是你说「多了」的蓝箭头指的线）
-       改由每排末尾的 overview-row-line 画一条 24 列全宽横线，
-       最后一排（哪怕不满 8 张）也画一条，这样所有横线长度完全一样，
-       跟上面 border-top 一样长、且不会多一条外框线 */
+    /* 与 1of1studio 原站一致：卡片流式紧凑排布（下一主题接着上一主题的空位继续排），
+       横线由每张卡的 border-bottom 自动形成，每满一排一条，无需手动插入 */
     align-content: flex-start;
     position: relative;
     /* 最后一排横线后，到下方 footer 的距离保留给用户调的 --spacing120 */
     padding-bottom: var(--spacing120);
 }
 
-/* 每排末尾画一条完整横跨 24 列的横线：
-   - 位置：在该排最后一张 overview-card 后面
-   - 用法：在 HTML 每 8 张卡后放 <div class="overview-row-line"></div>
-*/
-.projects-overview .overview-row-line {
-    flex-basis: 100%;
-    height: 0;
-    border: none;
-    border-top: 1px solid var(--line-strong);
-    margin: 0;
-    flex-shrink: 0;
-}
-
+/* 每张卡自带底边框：卡片流式排满一排后，底边自然连成一条全宽横线（同 1of1studio 原站）；
+   中间不再手动断行，下一个主题直接接着上一个主题的空位继续排 */
 .overview-card {
     width: calc(3*var(--column) + 3*var(--gutter));
     padding: var(--spacing8) calc(var(--gutter)/2);
-    /* 单张卡不单独画 border-bottom（否则不满 8 张的排会出现断一截的短线，
-       就是你截图里蓝圈圈的那条"短"）。
-       改由 .overview-row-line 在每个排的末尾统一画 24 列全宽横线。 */
+    border-bottom: 1px solid var(--line-strong);
     height: auto;
     min-height: calc((3*var(--column) + 2*var(--gutter))*1.2 + var(--spacing16) + var(--spacing8)*2);
     flex-shrink: 0;
@@ -421,6 +406,9 @@ html[lang="zh-CN"] [data-i18n] {
         height: auto;
         min-height: 0;
     }
+    /* 空占位卡只用于电脑端补齐最后一排的横线；
+       手机端卡片变单列后它会被挤成单独一排、边框显示成一根短线，直接隐藏 */
+    .projects-overview .overview-card:empty { display: none; }
 }
 .overview-card:last-child { flex-grow: 0; }
 
@@ -597,20 +585,8 @@ html[lang="zh-CN"] [data-i18n] {
     }
     .index-head .idx { margin-right: var(--spacing8); }
     .index-head .title { padding-right: var(--gutter); }
-    .index-head .services { display: none; }
 }
 .index-head .view-btn { justify-self: end; white-space: nowrap; }
-
-.index-services { display: flex; flex-direction: column; gap: 1px; }
-.index-timeline {
-    white-space: nowrap;
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-}
-@media (max-width: 900px) {
-    .index-timeline { display: none; }
-}
 
 .index-media {
     position: relative;
@@ -711,14 +687,17 @@ html[lang="zh-CN"] [data-i18n] {
         padding-top: var(--spacing32);
         border-top: none;
     }
-    .footer-bottom .copyright { order: 1; margin-top: var(--spacing16); }
+    .footer-bottom .copyright { order: 1; margin-top: var(--spacing16); align-self: flex-start; }
     .footer-bottom .footer-time { order: 0; white-space: pre-line; }
     .footer-bottom .footer-tagline { order: 2; width: calc(8*var(--column) + 7*var(--gutter)); margin-top: var(--spacing8); }
     .footer-bottom .footer-copy { order: 3; margin-top: var(--spacing8); }
 }
 .footer-bottom .footer-time { white-space: nowrap; }
-/* 城市名挪到时间正下方，上下留出间隔（不再和时间左右并排） */
-.footer-bottom .copyright { grid-column: 1; grid-row: 2; margin-top: var(--spacing16); }
+/* 电脑端：时间与城市名左右并排在同一水平线（靠底对齐）；
+   用 min-width 包裹，避免排在手机端媒体查询后面把它覆盖掉 */
+@media (min-width: 901px) {
+    .footer-bottom .copyright { align-self: end; }
+}
 .footer-bottom .footer-tagline { justify-self: start; }
 
 /* =========================================================
@@ -983,6 +962,7 @@ html.dark-mode .dark-toggle {
                     </a>
                 </div>
             </div>
+
              <div class="overview-card">
                 <div class="project-media">
                     <div class="media-index tabular">01.8</div>
@@ -992,8 +972,6 @@ html.dark-mode .dark-toggle {
                     </a>
                 </div>
             </div>
-
-            <div class="overview-row-line"></div>
 
             <!-- ====== 02 Simone Bodmer-Turner ====== -->
             <div class="overview-card">
@@ -1059,8 +1037,6 @@ html.dark-mode .dark-toggle {
             </div>
             
 
-            <div class="overview-row-line"></div>
-
             <!-- ====== 03 Ne Geurra ====== -->
             <div class="overview-card">
                 <a class="project-info" href="#">
@@ -1079,6 +1055,7 @@ html.dark-mode .dark-toggle {
                     </div>
                 </a>
             </div>
+
             <div class="overview-card">
                 <div class="project-media">
                     <div class="media-index tabular">03.1</div>
@@ -1141,7 +1118,8 @@ html.dark-mode .dark-toggle {
                         <div class="media-item"><div class="media-img"><img src="picture/12.jpg" alt=""><div class="loader"></div></div></div>
                     </a>
                 </div>
-            </div><div class="overview-card">
+            </div>
+            <div class="overview-card">
                 <div class="project-media">
                     <div class="media-index tabular">03.8</div>
                     <a class="media-container" href="#">
@@ -1150,8 +1128,6 @@ html.dark-mode .dark-toggle {
                     </a>
                 </div>
             </div>
-
-            <div class="overview-row-line"></div>
 
             <!-- ====== 04 Danny Kaplan Studio ====== -->
             <div class="overview-card">
@@ -1232,8 +1208,6 @@ html.dark-mode .dark-toggle {
                 </div>
             </div>
 
-            <div class="overview-row-line"></div>
-
             <!-- ====== 05 Handcrafted Modern ====== -->
             <div class="overview-card">
                 <a class="project-info" href="#">
@@ -1288,7 +1262,7 @@ html.dark-mode .dark-toggle {
                 </div>
             </div>
 
-            <!-- ====== 06 F.Miller ====== -->
+            <!-- ====== 06 F.Miller（接着 05 这排的空位继续流排，与全站其他主题的衔接方式一致） ====== -->
             <div class="overview-card">
                 <a class="project-info" href="#">
                     <div class="idx tabular">06</div>
@@ -1309,8 +1283,8 @@ html.dark-mode .dark-toggle {
                     </a>
                 </div>
             </div>
-
-            <div class="overview-row-line"></div>
+            <!-- 补齐这一排到 8 格（05 的 5 张 + 06 的 2 张 + 1 个空位），横线后结束 -->
+            <div class="overview-card"></div>
 
         </section>
         <!-- ============ Projects INDEX ============ -->
@@ -1319,18 +1293,6 @@ html.dark-mode .dark-toggle {
                 <div class="index-head">
                     <div class="idx tabular">01</div>
                     <div class="title"><a href="archive.html"><h3 class="tabular">Binhai New District</h3></a></div>
-                    <div class="services index-services">
-                        <div><span class="tabular">01.1&nbsp;&nbsp;</span><span>Branding</span></div>
-                        <div><span class="tabular">01.2&nbsp;&nbsp;</span><span>Printed Matter</span></div>
-                        <div><span class="tabular">01.3&nbsp;&nbsp;</span><span>Website</span></div>
-                    </div>
-                    <div class="timeline index-timeline">
-                        <strong class="tabular">2024 Onward</strong>
-                        <span>Brand Identity</span>
-                        <span>Website</span>
-                        <span>Print Assets</span>
-                        <span>Digital Assets</span>
-                    </div>
                     <div class="view-btn"><a class="buttonSecondary link" href="archive.html"><span>2026</span></a></div>
                 </div>
                 <div class="index-media">
@@ -1349,19 +1311,6 @@ html.dark-mode .dark-toggle {
                 <div class="index-head">
                     <div class="idx tabular">02</div>
                     <div class="title"><a href="#"><h3 class="tabular">Black and White</h3></a></div>
-                    <div class="services index-services">
-                        <div><span class="tabular">02.1&nbsp;&nbsp;</span><span>Branding</span></div>
-                        <div><span class="tabular">02.2&nbsp;&nbsp;</span><span>Printed Matter</span></div>
-                        <div><span class="tabular">02.3&nbsp;&nbsp;</span><span>Website</span></div>
-                    </div>
-                    <div class="timeline index-timeline">
-                        <strong class="tabular">2025 Onward</strong>
-                        <span>Brand Identity</span>
-                        <span>Print Assets</span>
-                        <span>Digital Assets</span>
-                        <span>Website</span>
-                        <span>Website Development</span>
-                    </div>
                     <div class="view-btn"><a class="buttonSecondary link" href="#"><span>2018 - 2026</span></a></div>
                 </div>
                 <div class="index-media">
@@ -1380,21 +1329,6 @@ html.dark-mode .dark-toggle {
                 <div class="index-head">
                     <div class="idx tabular">03</div>
                     <div class="title"><a href="#"><h3 class="tabular">Untitled</h3></a></div>
-                    <div class="services index-services">
-                        <div><span class="tabular">03.1&nbsp;&nbsp;</span><span>Branding</span></div>
-                        <div><span class="tabular">03.2&nbsp;&nbsp;</span><span>Art Direction</span></div>
-                        <div><span class="tabular">03.3&nbsp;&nbsp;</span><span>Printed Matter</span></div>
-                        <div><span class="tabular">03.4&nbsp;&nbsp;</span><span>Website</span></div>
-                    </div>
-                    <div class="timeline index-timeline">
-                        <strong class="tabular">2024 Onward</strong>
-                        <span>Brand Identity</span>
-                        <span>Website Design</span>
-                        <span>Website Development</span>
-                        <span>Digital Assets</span>
-                        <span>Print Assets</span>
-                        <span>Signage</span>
-                    </div>
                     <div class="view-btn"><a class="buttonSecondary link" href="#"><span>2023 - 2026</span></a></div>
                 </div>
                 <div class="index-media">
@@ -1413,17 +1347,6 @@ html.dark-mode .dark-toggle {
                 <div class="index-head">
                     <div class="idx tabular">04</div>
                     <div class="title"><a href="#"><h3 class="tabular">Untitled 2</h3></a></div>
-                    <div class="services index-services">
-                        <div><span class="tabular">04.1&nbsp;&nbsp;</span><span>Art Direction</span></div>
-                        <div><span class="tabular">04.2&nbsp;&nbsp;</span><span>Website</span></div>
-                    </div>
-                    <div class="timeline index-timeline">
-                        <strong class="tabular">2022 Onward</strong>
-                        <span>E-Commerce Design</span>
-                        <span>E-Commerce Development</span>
-                        <span>Digital Assets</span>
-                        <span>Print Assets</span>
-                    </div>
                     <div class="view-btn"><a class="buttonSecondary link" href="#"><span>2018 - 2025</span></a></div>
                 </div>
                 <div class="index-media">
@@ -1442,21 +1365,6 @@ html.dark-mode .dark-toggle {
                 <div class="index-head">
                     <div class="idx tabular">05</div>
                     <div class="title"><a href="#"><h3 class="tabular">Untitled 3</h3></a></div>
-                    <div class="services index-services">
-                        <div><span class="tabular">05.1&nbsp;&nbsp;</span><span>Printed Matter</span></div>
-                        <div><span class="tabular">05.2&nbsp;&nbsp;</span><span>Art Direction</span></div>
-                        <div><span class="tabular">05.3&nbsp;&nbsp;</span><span>Branding</span></div>
-                        <div><span class="tabular">05.4&nbsp;&nbsp;</span><span>Website</span></div>
-                    </div>
-                    <div class="timeline index-timeline">
-                        <strong class="tabular">2025</strong>
-                        <span>Brand Identity</span>
-                        <span>Website</span>
-                        <span>Art Direction</span>
-                        <span>Print Assets</span>
-                        <span>Digital Assets</span>
-                        <span>Website Development</span>
-                    </div>
                     <div class="view-btn"><a class="buttonSecondary link" href="#"><span>2025</span></a></div>
                 </div>
                 <div class="index-media">
@@ -1472,20 +1380,6 @@ html.dark-mode .dark-toggle {
                 <div class="index-head">
                     <div class="idx tabular">06</div>
                     <div class="title"><a href="#"><h3 class="tabular">Other</h3></a></div>
-                    <div class="services index-services">
-                        <div><span class="tabular">06.1&nbsp;&nbsp;</span><span>Branding</span></div>
-                        <div><span class="tabular">06.2&nbsp;&nbsp;</span><span>Packaging</span></div>
-                        <div><span class="tabular">06.3&nbsp;&nbsp;</span><span>Website</span></div>
-                    </div>
-                    <div class="timeline index-timeline">
-                        <strong class="tabular">2018 Onward</strong>
-                        <span>Brand Identity</span>
-                        <span>Packaging</span>
-                        <span>Print Assets</span>
-                        <span>E-Commerce Design</span>
-                        <span>E-Commerce Development</span>
-                        <span>Digital Assets</span>
-                    </div>
                     <div class="view-btn"><a class="buttonSecondary link" href="#"><span>2024</span></a></div>
                 </div>
                 <div class="index-media">

@@ -527,14 +527,17 @@ html[lang="zh-CN"] [data-i18n] {
         padding-top: var(--spacing32);
         border-top: none;
     }
-    .footer-bottom .copyright { order: 1; margin-top: var(--spacing16); }
+    .footer-bottom .copyright { order: 1; margin-top: var(--spacing16); align-self: flex-start; }
     .footer-bottom .footer-time { order: 0; white-space: pre-line; }
     .footer-bottom .footer-tagline { order: 2; width: calc(8*var(--column) + 7*var(--gutter)); margin-top: var(--spacing8); }
     .footer-bottom .footer-copy { order: 3; margin-top: var(--spacing8); }
 }
 .footer-bottom .footer-time { white-space: nowrap; }
-/* 城市名挪到时间正下方，上下留出间隔（不再和时间左右并排） */
-.footer-bottom .copyright { grid-column: 1; grid-row: 2; margin-top: var(--spacing16); }
+/* 电脑端：时间与城市名左右并排在同一水平线（靠底对齐）；
+   用 min-width 包裹，避免排在手机端媒体查询后面把它覆盖掉 */
+@media (min-width: 901px) {
+    .footer-bottom .copyright { align-self: end; }
+}
 .footer-bottom .footer-tagline { justify-self: start; }
 
 /* =========================================================

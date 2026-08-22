@@ -527,12 +527,14 @@ html[lang="zh-CN"] [data-i18n] {
         padding-top: var(--spacing32);
         border-top: none;
     }
-    .footer-bottom .copyright { order: 1; }
+    .footer-bottom .copyright { order: 1; margin-top: var(--spacing16); }
     .footer-bottom .footer-time { order: 0; white-space: pre-line; }
     .footer-bottom .footer-tagline { order: 2; width: calc(8*var(--column) + 7*var(--gutter)); margin-top: var(--spacing8); }
     .footer-bottom .footer-copy { order: 3; margin-top: var(--spacing8); }
 }
 .footer-bottom .footer-time { white-space: nowrap; }
+/* 城市名挪到时间正下方，上下留出间隔（不再和时间左右并排） */
+.footer-bottom .copyright { grid-column: 1; grid-row: 2; margin-top: var(--spacing16); }
 .footer-bottom .footer-tagline { justify-self: start; }
 
 /* =========================================================
@@ -713,9 +715,37 @@ html.dark-mode ::selection { background: var(--bg-soft); color: #fff; }
 </script>
 
 <script>
+/* 底部显示访问者当前所在城市：
+   中英文各请求一次 ipwho.is 并缓存，切换语言时同步换显示；
+   查询失败（离线/被墙）时保留原文字 fotomemo 兜底 */
 (function(){
     var el = document.getElementById('city-name');
-    if (el) el.textContent = 'fotomemo';
+    if (!el) return;
+    var cache = {};
+    function currentLang() {
+        try { return localStorage.getItem('site_lang') === 'zh' ? 'zh' : 'en'; } catch (e) { return 'en'; }
+    }
+    function show(lang) {
+        if (cache[lang]) el.textContent = cache[lang];
+    }
+    function load(lang) {
+        fetch('https://ipwho.is/', {
+            headers: { 'Accept-Language': lang === 'zh' ? 'zh-CN' : 'en' }
+        }).then(function(r){ return r.json(); })
+        .then(function(d){
+            if (d && d.success && d.city) {
+                cache[lang] = d.city;
+                if (currentLang() === lang) show(lang);
+            }
+        }).catch(function(){});
+    }
+    load('en');
+    load('zh');
+    /* 语言切换（html[lang] 变化）时同步切换城市名 */
+    if (window.MutationObserver) {
+        new MutationObserver(function(){ show(currentLang()); })
+            .observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+    }
 })();
 </script>
 
